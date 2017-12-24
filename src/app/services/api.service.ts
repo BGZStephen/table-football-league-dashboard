@@ -9,7 +9,6 @@ export class ApiService {
 
   baseUrl: string = environment.apiUrl;
   authorization: String = environment.authorization;
-  adminAuthorization: String = environment.adminAuthorization;
 
   constructor(
     private http: HttpClient,
@@ -108,11 +107,6 @@ export class ApiService {
       return this.apiCall(callParams);
     },
 
-    create: (user) => {
-      const callParams = {type: 'post', url: '/users', body: user}
-      return this.apiCall(callParams);
-    },
-
     delete: (id) => {
       const callParams = {type: 'delete', url: `/users/${id}`}
       return this.apiCall(callParams);
@@ -122,28 +116,11 @@ export class ApiService {
       const callParams = {type: 'put', url: `/users/${user._id}`, body: user}
       return this.apiCall(callParams);
     },
-
-    authenticate: (user) => {
-      const callParams = {type: 'post', url: '/users/authenticate', body: user}
-      return this.apiCall(callParams);
-    },
-
-    authenticateAdminUser: (user) => {
-      const callParams = {type: 'post', url: '/admin/users/authenticate', body: user}
-      return this.apiCall(callParams);
-    },
-  }
-
-  website = {
-    contactForm: (message) => {
-      const callParams = {type: 'post', url: '/website/contact-form', body: message}
-      return this.apiCall(callParams);
-    },
   }
 
   apiCall(callParams) {
     const jwt = localStorage.getItem('token');
-    let headers = new HttpHeaders({'Authorization': `${callParams.authorization || this.authorization}`});
+    let headers = new HttpHeaders({'Authorization': `${this.authorization}`});
     if(jwt) {
       headers = headers.set('token', jwt);
     }

@@ -14,7 +14,7 @@ export class AuthGuard {
     if (tokenNotExpired()) {
       return true;
     } else {
-      this.router.navigate([`${this.environment.websiteUrl}/login`])
+      this.router.navigate([`${environment.websiteUrl}/login`])
     }
   }
 }
