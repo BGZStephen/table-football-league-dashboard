@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -20,18 +21,21 @@ class Login extends Component {
         <p>Sign In to your account</p>
         <form>
           <div className="input-with-icon">
-            <div class="icon">
-              <FontAwesomeIcon icon="user" fixedWidth />
+            <div className="icon">
+              <FontAwesomeIcon icon="envelope" fixedWidth />
             </div>
-            <input id="email" name="email" type="text" value={this.state.email} onChange={this.handleEmailChange}/>
+            <input id="email" name="email" type="text" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange}/>
           </div>
           <div className="input-with-icon">
-            <div class="icon">
+            <div className="icon">
               <FontAwesomeIcon icon="lock" fixedWidth />
             </div>
-            <input id="password" name="password" type="password" value={this.state.password} onChange={this.handlePasswordChange}/>
+            <input id="password" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange}/>
           </div>
-          <button type="button" onClick={this.authenticate}>Click me</button>
+          <div className="actions-container">
+            <button type="button" onClick={this.authenticate}>Login</button>
+            <Link to="/register">Get registered</Link>
+          </div>
         </form>
       </div>
     )
