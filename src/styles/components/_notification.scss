@@ -1,0 +1,27 @@
+#notification-service {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 10px 15px;
+	transition: 0.3s ease all;
+	opacity: 0;
+
+	p {
+		font-size: 24px;
+	}
+
+	&.success {
+		background: $brand-green;
+		color: white;
+	}
+
+	&.danger {
+		background: $brand-red;
+		color: white;
+	}
+
+	&.visible {
+		opacity: 1;
+	}
+}
