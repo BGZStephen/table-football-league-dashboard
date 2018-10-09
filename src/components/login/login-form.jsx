@@ -70,7 +70,7 @@ class Login extends Component {
       }
     }).then(res => {
       localStorage.setItem('token', res.data.token)
-      NotificationService.show('Registration successful')
+      NotificationService.show('Login successful')
       this.props.onSuccess();
     }, err => {
       NotificationService.show(err.response.data.message)

@@ -1,0 +1,12 @@
+.mobile-top-nav {
+  align-items: center;
+  display: flex;
+  height: 55px;
+  .menu-toggle-container {
+    padding: 15px;
+
+    .fa-bars {
+      font-size: 20px;
+    }
+  }
+}
