@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/api';
+import NotificationService from '../../services/notification';
+import FormError from '../form/form-error';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
 
@@ -10,7 +12,10 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      submitted: false,
+      formErrors: {
+        email: null,
+        password: null
+      }
     }
   }
 
@@ -24,14 +29,16 @@ class Login extends Component {
             <div className="icon">
               <FontAwesomeIcon icon="envelope" fixedWidth />
             </div>
-            <input id="email" name="email" type="text" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange}/>
+            <input id="email" name="email" type="text" placeholder="Email" value={this.state.email} onChange={this.handleFormInputChange}/>
           </div>
+          {this.state.formErrors.email ? <FormError message={this.state.formErrors.email} /> : null}
           <div className="input-with-icon">
             <div className="icon">
               <FontAwesomeIcon icon="lock" fixedWidth />
             </div>
-            <input id="password" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange}/>
+            <input id="password" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleFormInputChange}/>
           </div>
+          {this.state.formErrors.password ? <FormError message={this.state.formErrors.password} /> : null}
           <div className="actions-container">
             <button type="button" onClick={this.authenticate}>Login</button>
             <Link to="/register">Get registered</Link>
@@ -41,25 +48,59 @@ class Login extends Component {
     )
   }
 
-  handleEmailChange = (event) => {
-    this.setState({email: event.target.value})
-  }
+  handleFormInputChange = (event) => {
+    const id = event.target.id;
+    const value = event.target.value;
+    const newState = this.state;
 
-  handlePasswordChange = (event) => {
-    this.setState({password: event.target.value})
+    newState.formErrors[id] = null;
+    newState[id] = value;
+    this.setState({state: newState})
   }
 
   authenticate = () => {
+    if (!this.isFormValid()) {
+      return;
+    }
+
     ApiService.users.authenticate({
       body: {
         email: this.state.email,
         password: this.state.password
       }
     }).then(res => {
-      console.log(res)
+      localStorage.setItem('token', res.data.token)
+      NotificationService.show('Registration successful')
+      this.props.onSuccess();
     }, err => {
-      console.log(err.response)
+      NotificationService.show(err.response.data.message)
     })
+  }
+
+  isFormValid = () => {
+    const newState = this.state;
+    let stateSetFlag = false;
+
+    for (const key of Object.keys(newState.formErrors)) {
+      newState.formErrors[key] = null;
+    }
+
+    if (!this.state.email) {
+      newState.formErrors.email = 'Email is required';
+      stateSetFlag = true;
+    }
+
+    if (!this.state.password) {
+      newState.formErrors.password = 'Password is required';
+      stateSetFlag = true;
+    }
+
+    if (stateSetFlag) {
+      this.setState({state: newState})
+      return false;
+    }
+
+    return true;
   }
 }
 

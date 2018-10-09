@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ApiService from '../../services/api';
 import NotificationService from '../../services/notification';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FormError from '../form/form-error';
 
 class RegisterForm extends Component {
