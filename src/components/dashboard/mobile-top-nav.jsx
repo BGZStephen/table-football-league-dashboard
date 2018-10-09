@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Logo from '../logo/logo';
 
 class MobileTopNav extends Component {
   render() {
@@ -8,6 +9,7 @@ class MobileTopNav extends Component {
         <div className="menu-toggle-container">
           <FontAwesomeIcon icon="bars" fixedWidth />
         </div>
+        <Logo />
       </div>
     )
   }
