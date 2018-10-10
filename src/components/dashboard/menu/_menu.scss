@@ -6,7 +6,28 @@
   transform: translateX(-100%);
   transition: 0.2s ease-in-out all;
 
+  .logo-container {
+    display: none;
+  }
+
   &.active {
     transform: translateX(0);
+  }
+
+  @media(min-width: $screen-lg) {
+    height: 100vh;
+    max-height: 100vh;
+    transition: 0s ease-in-out all;
+    width: 200px;
+    position: relative;
+    transform: translateX(0);
+
+    .logo-container {
+      background: white;
+      display: block;
+      padding: 8px 15px 4px 15px;
+      border-bottom: 1px solid rgba($brand-grey, .2);
+      border-right: 1px solid rgba($brand-dark-grey, 1);
+    }
   }
 }

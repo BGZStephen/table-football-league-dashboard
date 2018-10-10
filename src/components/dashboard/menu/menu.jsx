@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import MenuItem from './menu-item';
+import Logo from '../../logo/logo';
 
 class Menu extends Component {
   constructor({props}) {
@@ -20,6 +21,9 @@ class Menu extends Component {
     ]
     return (
       <div className={this.state.menuVisible ? "dashboard-menu active" : "dashboard-menu"}>
+        <div className="logo-container">
+          <Logo />
+        </div>
         <ul>
           {menuItems.map(menuItem => <MenuItem key={menuItem.id} menuItem={menuItem}/>)}
         </ul>

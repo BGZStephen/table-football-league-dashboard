@@ -1,0 +1,25 @@
+.breadcrumbs {
+  align-items: center;
+  border-bottom: 1px solid rgba($brand-dark-grey, 1);
+  display: flex;
+  height: 45px;
+  padding: 0 15px;
+  width: 100%;
+
+  a {
+    color: $brand-blue;
+    text-decoration: none;
+  }
+
+  span {
+    display: flex;
+  }
+
+  p {
+    display: flex;
+  }
+
+  .breadcrumb-seperator {
+    margin: 0 7px;
+  }
+}
