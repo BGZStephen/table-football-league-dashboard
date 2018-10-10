@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import React, {Component} from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import MobileTopNav from '../mobile-top-nav/mobile-top-nav';
 import Menu from '../menu/menu';
+import Home from '../home/home';
 
 class ViewWrapper extends Component {
   constructor(props) {
@@ -17,9 +18,9 @@ class ViewWrapper extends Component {
       <BrowserRouter basename="/dashboard">
         <div className="dashboard-view-wrapper">
           <MobileTopNav onMenuToggle={this.handleMenuToggle} />
-          <Menu menuVisible={this.state.menuVisible}/>
+          <Menu menuVisible={this.state.menuVisible} />
           <Switch>
-
+            <Route path='' component={Home} />
           </Switch>
         </div>
       </BrowserRouter>

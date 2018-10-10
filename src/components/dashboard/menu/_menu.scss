@@ -1,0 +1,12 @@
+.dashboard-menu {
+  background: $brand-black;
+  width: 100%;
+  min-height: calc(100vh - 55px);
+  position: absolute;
+  transform: translateX(-100%);
+  transition: 0.2s linear all;
+
+  &.active {
+    transform: translateX(0);
+  }
+}
