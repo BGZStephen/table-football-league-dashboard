@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 
 class Players extends Component {
   constructor({props}) {
@@ -6,9 +7,22 @@ class Players extends Component {
   }
 
   render() {
+    const breadcrumbs = [
+      {
+        label: 'dashboard',
+      },
+      {
+        label: 'players',
+        link: '/players'
+      },
+    ]
+
     return (
       <div className="dashboard-home">
-        <h1>Players</h1>
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
+        <div className="content-container container-grey">
+        
+        </div>
       </div>
     )
   }
