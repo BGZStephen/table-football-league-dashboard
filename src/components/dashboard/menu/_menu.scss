@@ -5,6 +5,7 @@
   position: absolute;
   transform: translateX(-100%);
   transition: 0.2s ease-in-out all;
+  top: 55px;
 
   .logo-container {
     display: none;
@@ -21,6 +22,7 @@
     width: 200px;
     position: relative;
     transform: translateX(0);
+    top: 0;
 
     .logo-container {
       background: white;

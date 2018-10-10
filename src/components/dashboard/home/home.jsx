@@ -9,24 +9,20 @@ class Home extends Component {
   render() {
     const breadcrumbs = [
       {
-        label: 'home',
-        link: '/home'
-      },
-      {
-        label: 'home',
+        label: 'dashboard',
       },
       {
         label: 'home',
         link: '/home'
-      },
-      {
-        label: 'home',
       },
     ]
 
     return (
       <div className="dashboard-home">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
+        <div className="content-container container-grey">
+        
+        </div>
       </div>
     )
   }

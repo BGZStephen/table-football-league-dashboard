@@ -1,0 +1,12 @@
+.content-container {
+  height: calc(100vh - 55px);
+
+  @media(min-width: $screen-lg) {
+    height: calc(100vh - 45px);
+  }
+}
+
+.container-grey {
+  background: #e3e4e5;
+  padding: 10px 15px;
+}

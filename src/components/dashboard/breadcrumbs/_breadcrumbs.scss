@@ -1,7 +1,7 @@
 .breadcrumbs {
   align-items: center;
   border-bottom: 1px solid rgba($brand-dark-grey, 1);
-  display: flex;
+  display: none;
   height: 45px;
   padding: 0 15px;
   width: 100%;
@@ -21,5 +21,9 @@
 
   .breadcrumb-seperator {
     margin: 0 7px;
+  }
+
+  @media(min-width: $screen-lg) {
+    display: flex;
   }
 }
