@@ -3,6 +3,10 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import MobileTopNav from '../mobile-top-nav/mobile-top-nav';
 import Menu from '../menu/menu';
 import Home from '../home/home';
+import Teams from '../teams/teams';
+import Leagues from '../leagues/leagues';
+import Fixtures from '../fixtures/fixtures';
+import Players from '../players/players';
 
 class ViewWrapper extends Component {
   constructor(props) {
@@ -20,7 +24,11 @@ class ViewWrapper extends Component {
           <MobileTopNav onMenuToggle={this.handleMenuToggle} />
           <Menu menuVisible={this.state.menuVisible} />
           <Switch>
-            <Route path='' component={Home} />
+            <Route exact path='/home' component={Home} />
+            <Route exact path='/players' component={Players} />
+            <Route exact path='/teams' component={Teams} />
+            <Route exact path='/fixtures' component={Fixtures} />
+            <Route exact path='/leagues' component={Leagues} />
           </Switch>
         </div>
       </BrowserRouter>
