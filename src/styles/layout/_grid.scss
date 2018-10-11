@@ -1,0 +1,54 @@
+$size-selectors: (
+	sm,
+	md,
+  lg,
+  xl
+);
+
+$size-media: (
+	576px,
+	768px,
+  992px,
+  1200px
+);
+
+.row {
+	display: flex;
+	margin-bottom: 10px;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+}
+
+.col {
+  padding: 8px;
+  width: 100%;
+}
+
+@for $i from 1 through 12 {
+	.col-#{$i} {
+		width: calc((100% / 12) * #{$i});
+	}
+}
+
+@each $selector in $size-selectors {
+	$i: index($size-selectors, $selector);
+
+	@for $j from 1 through 12 {
+		.col-#{nth($size-selectors, $i)}-#{$j} {
+      margin-bottom: 15px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+			@media (min-width: #{nth($size-media, $i)}) {
+        margin-bottom: 0;
+				width: calc((100% / 12) * #{$j});
+			}
+		}
+	}
+}
