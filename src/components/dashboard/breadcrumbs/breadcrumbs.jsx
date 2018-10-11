@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 class Breadcrumbs extends Component {
   constructor(props) {
@@ -13,13 +13,13 @@ class Breadcrumbs extends Component {
         {
           this.props.breadcrumbs.map((breadcrumb, index) => {
             return (
-              <span>
+              <span key={index}>
                 {
-                  breadcrumb.link ? 
-                  <NavLink exact={true} to={breadcrumb.link}>
-                    {breadcrumb.label}
-                  </NavLink> :
-                  <p>{breadcrumb.label}</p>
+                  breadcrumb.link ?
+                    <NavLink exact={true} to={breadcrumb.link}>
+                      {breadcrumb.label}
+                    </NavLink> :
+                    <p>{breadcrumb.label}</p>
                 }
                 {index < (this.props.breadcrumbs.length - 1) ? <i className="breadcrumb-seperator">/</i> : null}
               </span>

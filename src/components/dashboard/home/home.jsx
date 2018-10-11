@@ -25,13 +25,38 @@ class Home extends Component {
           <div className="row">
             <div className="col col-sm-3">
               <div className="panel panel-white">
-                <QuickActions />
+                <QuickActions
+                  onAddLeage={this.onAddLeague}
+                  onAddPlayer={this.onAddPlayer}
+                  onAddFixture={this.onAddFixture}
+                  onAddTeam={this.onAddTeam}
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
     )
+  }
+
+  onAddPlayer = () => {
+    this.goTo('/players/add');
+  }
+
+  onAddFixture = () => {
+    this.goTo('/fixtures/add');
+  }
+
+  onAddTeam = () => {
+    this.goTo('/teams/add');
+  }
+
+  onAddLeague = () => {
+    this.goTo('/leagues/add');
+  }
+
+  goTo = (path) => {
+    this.props.history.push(path)
   }
 }
 
