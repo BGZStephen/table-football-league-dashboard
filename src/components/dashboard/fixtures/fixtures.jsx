@@ -18,7 +18,7 @@ class Fixtures extends Component {
     ]
 
     return (
-      <div className="dashboard-home">
+      <div className="fixtures full-width-container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
         

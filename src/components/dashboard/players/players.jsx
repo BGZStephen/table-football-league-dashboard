@@ -18,7 +18,7 @@ class Players extends Component {
     ]
 
     return (
-      <div className="dashboard-home">
+      <div className="players full-width-container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
         

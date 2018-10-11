@@ -18,7 +18,7 @@ class Teams extends Component {
     ]
 
     return (
-      <div className="dashboard-home">
+      <div className="teams full-width-container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
         

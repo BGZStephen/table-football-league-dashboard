@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 
-class Leagues extends Component {
+class PlayersAdd extends Component {
   constructor({props}) {
     super(props)
   }
@@ -12,20 +12,24 @@ class Leagues extends Component {
         label: 'dashboard',
       },
       {
-        label: 'leagues',
-        link: '/leagues'
+        label: 'players',
+        link: '/players'
+      },
+      {
+        label: 'add',
+        link: '/players/add'
       },
     ]
 
     return (
-      <div className="leagues full-width-container">
+      <div className="players-add full-width-container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
-        
+
         </div>
       </div>
     )
   }
 }
 
-export default Leagues;
+export default PlayersAdd;

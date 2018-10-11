@@ -18,7 +18,7 @@ class Home extends Component {
     ]
 
     return (
-      <div className="dashboard-home">
+      <div className="dashboard-home full-width">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
         
