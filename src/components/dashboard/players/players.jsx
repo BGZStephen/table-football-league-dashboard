@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
+import ApiService from '../../../services/api';
+import NotificationService from '../../../services/notification';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 
 class Players extends Component {
   constructor({props}) {
     super(props)
+
+    this.state = {
+      players: [],
+    }
+
+    this.getPlayers();
   }
 
   render() {
@@ -25,6 +33,15 @@ class Players extends Component {
         </div>
       </div>
     )
+  }
+
+  getPlayers = () => {
+    ApiService.players.index()
+    .then(res => {
+      console.log(res)
+    }, err => {
+      NotificationService.error(err.response.data.message)
+    })
   }
 }
 
