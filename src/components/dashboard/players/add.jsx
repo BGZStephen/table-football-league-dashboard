@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import ApiService from '../../../services/api';
+import NotificationService from '../../../services/notification';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import FormError from '../../form/form-error';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -98,6 +100,20 @@ class PlayersAdd extends Component {
     if (!this.isFormValid()) {
       return;
     }
+
+    ApiService.players.create({
+      body: {
+        name: this.state.name,
+        striker: this.state.striker,
+        defender: this.state.striker,
+      }
+    }).then(res => {
+      localStorage.setItem('token', res.data.token);
+      NotificationService.show('Player created successfully');
+      this.props.history.push('/players')
+    }, err => {
+      NotificationService.error(err.response.data.message)
+    })
   }
 
   isFormValid = () => {

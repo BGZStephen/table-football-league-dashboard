@@ -17,6 +17,11 @@ class ApiService {
 				_.assign({ method: 'post', url: '/users/authenticate' }, options),
 			),
   };
+
+  players = {
+		create: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'post', url: '/private/players' }, options)),
+  };
   
 	processApiCall(options) {
 		const body = options.body || options.formData;
