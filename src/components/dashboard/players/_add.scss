@@ -1,0 +1,91 @@
+.players-add {
+  .panel-title {
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  form {
+    padding: 0 5px;
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+
+      label {
+        margin-bottom: 5px;
+      }
+
+      input {
+        border: 1px solid $brand-grey;
+        height: 100%;
+        padding: 8px;
+        width: 100%;
+      }
+
+      button {
+        background: $brand-green;
+        border: 0;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px;
+        text-transform: uppercase;
+        transition: 0.3s ease all;
+
+        &:hover {
+          background: darken($brand-green, 10%);
+        }
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    .positions-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+  
+      .position {
+        align-items: center;
+        color: black;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 5px;
+        width: 100px;
+        height: 80px;
+        transition: 0.3s ease all;
+        border-radius: 5px;
+        
+        &.striker {
+          &:hover,
+          &.active {
+            background: $brand-red;
+            color: white;
+          }
+        }
+
+        &.defender {
+          &:hover,
+          &.active {
+            background: $brand-blue;
+            color: white;
+          }
+        }
+      }
+      
+      svg {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
