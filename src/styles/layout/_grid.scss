@@ -16,7 +16,7 @@ $size-media: (
 	display: flex;
 	margin-bottom: 10px;
   align-items: flex-start;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 
 	&:last-of-type {
 		margin-bottom: 0;
@@ -24,7 +24,7 @@ $size-media: (
 }
 
 .col {
-  padding: 8px;
+  padding: 0 5px;
   width: 100%;
 }
 

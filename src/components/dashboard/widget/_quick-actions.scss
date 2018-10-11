@@ -1,0 +1,36 @@
+.quick-actions-widget {
+  p {
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .actions-container {
+
+    button {
+      background: $brand-blue;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      padding: 10px;
+      text-transform: uppercase;
+      transition: 0.3s ease all;
+      width: 100%;
+
+      svg {
+        margin-right: 10px;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        background: darken($brand-blue, 10%);
+      }
+    }
+  }
+}

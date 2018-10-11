@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs'
+import QuickActions from '../widget/quick-actions';
 
 class Home extends Component {
   constructor({props}) {
@@ -21,7 +22,13 @@ class Home extends Component {
       <div className="dashboard-home full-width-container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
-
+          <div className="row">
+            <div className="col col-sm-3">
+              <div className="panel panel-white">
+                <QuickActions />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )
