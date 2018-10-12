@@ -3,7 +3,7 @@ import ApiService from '../../../services/api';
 import NotificationService from '../../../services/notification';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import FormError from '../../form/form-error';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class PlayersAdd extends Component {
   constructor({props}) {
