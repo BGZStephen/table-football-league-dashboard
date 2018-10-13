@@ -5,16 +5,22 @@ import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import FormError from '../../form/form-error';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-class PlayerAdd extends Component {
-  constructor({props}) {
+class PlayerEdit extends Component {
+  constructor(props) {
     super(props)
 
     this.state = {
       formErrors: {name: null},
-      defender: false,
-      striker: false,
-      name: '',
+      player: {
+        name: '',
+        position: {
+          striker: false,
+          defender: false,
+        }
+      }
     }
+
+    this.fetchPlayer();
   }
 
   render() {
@@ -39,11 +45,11 @@ class PlayerAdd extends Component {
           <div className="row">
             <div className="col col-sm-3">
               <div className="panel panel-white">
-                <p className="panel-title">Add a player</p>
+                <p className="panel-title">Edit a player</p>
                 <form>
                   <div className="input-group">
                     <label>Name</label>
-                    <input type="text" id="name" name="name" placeholder="Jon Doe" onChange={this.handleFormInputChange} />
+                    <input type="text" id="name" name="name" placeholder="Jon Doe" value={this.state.player.name} onChange={this.handleFormInputChange} />
                     {this.state.formErrors.name ? <FormError message={this.state.formErrors.name} /> : null}
                   </div>
                   <div className="input-group">
@@ -51,11 +57,11 @@ class PlayerAdd extends Component {
                     {this.state.formErrors.position ? <FormError message={this.state.formErrors.position} /> : null}
                   </div>
                   <div className="positions-container">
-                    <div className={this.state.striker ? "position striker active" : "position striker"} onClick={this.toggleStriker}>
+                    <div className={this.state.player.position.striker ? "position striker active" : "position striker"} onClick={this.toggleStriker}>
                       <FontAwesomeIcon icon="crosshairs" />
                       <p>Striker</p>
                     </div>
-                    <div className={this.state.defender ? "position defender active" : "position defender"} onClick={this.toggleDefender}>
+                    <div className={this.state.player.position.defender ? "position defender active" : "position defender"} onClick={this.toggleDefender}>
                       <FontAwesomeIcon icon="shield-alt" />
                       <p>Defender</p>
                     </div>
@@ -75,14 +81,14 @@ class PlayerAdd extends Component {
   toggleStriker = () => {
     const newState = this.state;
     newState.formErrors.position = null;
-    newState.striker = !this.state.striker;
+    newState.player.position.striker = !this.state.player.position.striker;
     this.setState(newState)
   }
 
   toggleDefender = () => {
     const newState = this.state;
     newState.formErrors.position = null;
-    newState.defender = !this.state.defender;
+    newState.player.position.defender = !this.state.player.position.defender;
     this.setState(newState)
   }
 
@@ -92,7 +98,7 @@ class PlayerAdd extends Component {
     const newState = this.state;
 
     newState.formErrors[id] = null;
-    newState[id] = value;
+    newState.player[id] = value;
     this.setState({state: newState})
   }
 
@@ -101,15 +107,14 @@ class PlayerAdd extends Component {
       return;
     }
 
-    ApiService.players.create({
-      body: {
-        name: this.state.name,
-        striker: this.state.striker,
-        defender: this.state.defender,
+    ApiService.players.update({
+      body: this.state.player,
+      params: {
+        id: this.state.player._id
       }
     }).then(res => {
       localStorage.setItem('token', res.data.token);
-      NotificationService.show('Player created successfully');
+      NotificationService.show('Player updated successfully');
       this.props.history.push('/players')
     }, err => {
       NotificationService.error(err.response.data.message)
@@ -124,12 +129,12 @@ class PlayerAdd extends Component {
       newState.formErrors[key] = null;
     }
 
-    if (!this.state.name) {
+    if (!this.state.player.name) {
       newState.formErrors.name = 'Name is required';
       stateSetFlag = true;
     }
 
-    if (!this.state.striker && !this.state.defender) {
+    if (!this.state.player.position.striker && !this.state.player.position.defender) {
       newState.formErrors.position = 'Please select one or more positions';
       stateSetFlag = true;
     }
@@ -141,6 +146,22 @@ class PlayerAdd extends Component {
 
     return true;
   }
+
+  fetchPlayer = () => {
+    const id =this.props.match.params.id;
+
+    ApiService.players.get({
+      params: {
+        id,
+      }
+    })
+    .then(res => {
+      console.log(res)
+      this.setState({player: res.data})
+    }, err => {
+      NotificationService.error(err.response.data.message)
+    })
+  }
 }
 
-export default PlayerAdd;
+export default PlayerEdit;
