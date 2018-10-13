@@ -32,6 +32,8 @@ class ApiService {
   teams = {
 		create: (options = {}) =>
       this.processApiCall(_.assign({ method: 'post', url: '/private/teams' }, options)),
+    get: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'get', url: '/private/teams/:id' }, options)),
     index: (options = {}) =>
       this.processApiCall(_.assign({ method: 'get', url: '/private/teams/search' }, options)),
   };

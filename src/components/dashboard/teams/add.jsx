@@ -6,7 +6,7 @@ import FormError from '../../form/form-error';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import PlayerSelectModal from '../modals/player-select-modal'
 
-class TeamsAdd extends Component {
+class TeamAdd extends Component {
   constructor(props) {
     super(props)
 
@@ -245,4 +245,4 @@ class TeamsAdd extends Component {
   }
 }
 
-export default TeamsAdd;
+export default TeamAdd;

@@ -4,7 +4,8 @@ import MobileTopNav from '../mobile-top-nav/mobile-top-nav';
 import Menu from '../menu/menu';
 import Home from '../home/home';
 import Teams from '../teams/teams';
-import TeamsAdd from '../teams/add';
+import TeamAdd from '../teams/add';
+import TeamView from '../teams/view';
 import Leagues from '../leagues/leagues';
 import LeaguesAdd from '../leagues/add';
 import Fixtures from '../fixtures/fixtures';
@@ -36,7 +37,8 @@ class ViewWrapper extends Component {
             <Route exact path='/players/:id' component={PlayerView} />
             <Route exact path='/players/:id/edit' component={PlayerEdit} />
             <Route exact path='/teams' component={Teams} />
-            <Route exact path='/teams/add' component={TeamsAdd} />
+            <Route exact path='/teams/:id' component={TeamView} />
+            <Route exact path='/teams/add' component={TeamAdd} />
             <Route exact path='/fixtures' component={Fixtures} />
             <Route exact path='/fixtures/add' component={FixturesAdd} />
             <Route exact path='/leagues' component={Leagues} />
