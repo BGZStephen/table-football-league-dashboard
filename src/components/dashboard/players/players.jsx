@@ -30,10 +30,11 @@ class Players extends Component {
       <div className="players full-width-container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
-          <div class="row">
-            <div class="col col-md-6">
-              <div class="panel panel-white">
-                <div class="players-list-container">
+          <div className="row">
+            <div className="col col-md-3">
+              <div className="panel panel-white">
+                <div className="panel-title">Players</div>
+                <div className="players-list-container">
                   <PlayersList players={this.state.players} />
                 </div>
               </div>

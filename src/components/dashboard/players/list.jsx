@@ -13,7 +13,7 @@ class PlayersList extends Component {
   render() {
     return (
       <div className="players-list">
-        {this.state.players.map(player => <PlayersListItem player={player} />)}
+        {this.state.players.map(player => <PlayersListItem key={player._id} player={player} />)}
       </div>
     )
   }

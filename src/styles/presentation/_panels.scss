@@ -1,6 +1,13 @@
 .panel {
   padding: 10px 5px;
 
+  .panel-title {
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
   &.panel-white {
     background: white;
   }
