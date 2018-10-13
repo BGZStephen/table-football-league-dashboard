@@ -10,7 +10,7 @@ class MenuItem extends Component {
   render() {
     return (
       <li className="menu-item">
-        <NavLink exact={true} activeClassName='active' to={this.props.menuItem.link}>
+        <NavLink activeClassName='active' to={this.props.menuItem.link}>
           <div className="icon-container">
             <FontAwesomeIcon icon={this.props.menuItem.icon} fixedWidth />
           </div>

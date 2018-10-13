@@ -6,6 +6,7 @@ import Home from '../home/home';
 import Teams from '../teams/teams';
 import TeamAdd from '../teams/add';
 import TeamView from '../teams/view';
+import TeamEdit from '../teams/edit';
 import Leagues from '../leagues/leagues';
 import LeaguesAdd from '../leagues/add';
 import Fixtures from '../fixtures/fixtures';
@@ -37,8 +38,9 @@ class ViewWrapper extends Component {
             <Route exact path='/players/:id' component={PlayerView} />
             <Route exact path='/players/:id/edit' component={PlayerEdit} />
             <Route exact path='/teams' component={Teams} />
-            <Route exact path='/teams/:id' component={TeamView} />
             <Route exact path='/teams/add' component={TeamAdd} />
+            <Route exact path='/teams/:id' component={TeamView} />
+            <Route exact path='/teams/:id/edit' component={TeamEdit} />
             <Route exact path='/fixtures' component={Fixtures} />
             <Route exact path='/fixtures/add' component={FixturesAdd} />
             <Route exact path='/leagues' component={Leagues} />
