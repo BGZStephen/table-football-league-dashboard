@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, {Component} from 'react';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import ApiService from '../../../services/api';

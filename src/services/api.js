@@ -43,6 +43,8 @@ class ApiService {
   fixtures = {
 		create: (options = {}) =>
       this.processApiCall(_.assign({ method: 'post', url: '/private/fixtures' }, options)),
+    index: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'get', url: '/private/fixtures/search' }, options)),
   };
   
 	processApiCall(options) {
