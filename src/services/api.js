@@ -21,6 +21,8 @@ class ApiService {
   players = {
 		create: (options = {}) =>
       this.processApiCall(_.assign({ method: 'post', url: '/private/players' }, options)),
+    get: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'get', url: '/private/players/:id' }, options)),
     index: (options = {}) =>
       this.processApiCall(_.assign({ method: 'get', url: '/private/players/search' }, options)),
   };

@@ -10,7 +10,9 @@ import LeaguesAdd from '../leagues/add';
 import Fixtures from '../fixtures/fixtures';
 import FixturesAdd from '../fixtures/add';
 import Players from '../players/players';
-import PlayersAdd from '../players/add';
+import PlayerAdd from '../players/add';
+import PlayerEdit from '../players/edit';
+import PlayerView from '../players/view';
 
 class ViewWrapper extends Component {
   constructor(props) {
@@ -30,7 +32,9 @@ class ViewWrapper extends Component {
           <Switch>
             <Route exact path='/home' component={Home} />
             <Route exact path='/players' component={Players} />
-            <Route exact path='/players/add' component={PlayersAdd} />
+            <Route exact path='/players/add' component={PlayerAdd} />
+            <Route exact path='/players/:id' component={PlayerView} />
+            <Route exact path='/players/:id/edit' component={PlayerEdit} />
             <Route exact path='/teams' component={Teams} />
             <Route exact path='/teams/add' component={TeamsAdd} />
             <Route exact path='/fixtures' component={Fixtures} />
