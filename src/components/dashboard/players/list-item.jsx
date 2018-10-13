@@ -8,6 +8,7 @@ class PlayersListItem extends Component {
 
     this.state = {
       player: null,
+      options: false,
     }
 
   }
@@ -27,17 +28,19 @@ class PlayersListItem extends Component {
             </div>
           ) : null}
         </div>
-        <Link to={`/players/${this.state.player._id}`}>{this.state.player.name}</Link>
-        <div className="actions-container">
-          <Link to={`/players/${this.state.player._id}/edit`}>
+        <a onClick={() => this.props.onPlayerSelect(this.state.player)}>{this.state.player.name}</a>
+        {this.state.options ? (
+          <div className="actions-container">
+            <Link to={`/players/${this.state.player._id}/edit`}>
+              <div className="action">
+                <FontAwesomeIcon icon="pencil-alt" />
+              </div>
+            </Link>
             <div className="action">
-              <FontAwesomeIcon icon="pencil-alt" />
+              <FontAwesomeIcon icon="trash" />
             </div>
-          </Link>
-          <div className="action">
-            <FontAwesomeIcon icon="trash" />
           </div>
-        </div>
+        ): null}
       </div>
     )
   }

@@ -28,6 +28,11 @@ class ApiService {
     index: (options = {}) =>
       this.processApiCall(_.assign({ method: 'get', url: '/private/players/search' }, options)),
   };
+
+  teams = {
+		create: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'post', url: '/private/teams' }, options)),
+  };
   
 	processApiCall(options) {
 		const body = options.body || options.formData;

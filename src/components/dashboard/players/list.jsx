@@ -7,13 +7,14 @@ class PlayersList extends Component {
 
     this.state = {
       players: [],
+      options: false,
     }
   }
 
   render() {
     return (
       <div className="players-list">
-        {this.state.players.map(player => <PlayersListItem key={player._id} player={player} />)}
+        {this.state.players.map(player => <PlayersListItem key={player._id} player={player} options={this.state.options} onPlayerSelect={(player) => {this.props.onPlayerSelect(player) }}/>)}
       </div>
     )
   }

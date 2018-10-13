@@ -46,6 +46,8 @@
         align-items: center;
         justify-content: center;
         height: 100px;
+        margin-bottom: 10px;
+        position: relative;
 
         > p {
           font-size: 18px;
@@ -53,10 +55,35 @@
           text-align: center;
         }
 
+        .player-remove-overlay {
+          background: rgba(black, .8);
+          cursor: pointer;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          opacity: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none;
+          transition: 0.3s ease all;
+
+          > p {
+            color: white;
+            margin-bottom: 10px;
+          }
+
+          svg {
+            color: white;
+          }
+        }
+
         .positions-container {
           display: flex;
           justify-content: center;
-          margin-bottom: 10px;
       
           .position {
             align-items: center;
@@ -86,6 +113,32 @@
                 background: $brand-blue;
                 color: white;
             }
+          }
+        }
+
+        &.player-add {
+          cursor: pointer;
+          transition: 0.3s ease all;
+
+          p {
+            margin-bottom: 10px;
+          }
+
+          p, svg {
+            color: black;
+          }
+
+          &:hover {
+            p, svg {
+              color: $brand-blue;
+            }
+          }
+        }
+
+        &:hover {
+          .player-remove-overlay {
+            opacity: 1;
+            pointer-events: all;
           }
         }
       }

@@ -35,7 +35,7 @@ class Players extends Component {
               <div className="panel panel-white">
                 <div className="panel-title">Players</div>
                 <div className="players-list-container">
-                  <PlayersList players={this.state.players} />
+                  <PlayersList players={this.state.players} options={true} onPlayerSelect={(player) => this.goToPlayer(player)}/>
                 </div>
               </div>
             </div>
@@ -52,6 +52,10 @@ class Players extends Component {
       }, err => {
         NotificationService.error(err.response.data.message)
       })
+  }
+
+  goToPlayer(player) {
+    this.props.history.push(`/players/${player._id}`);
   }
 }
 
