@@ -31,7 +31,7 @@ class PlayersListItem extends Component {
         <div className="actions-container">
           <Link to={`/players/${this.state.player._id}/edit`}>
             <div className="action">
-                <FontAwesomeIcon icon="pencil-alt" />
+              <FontAwesomeIcon icon="pencil-alt" />
             </div>
           </Link>
           <div className="action">
