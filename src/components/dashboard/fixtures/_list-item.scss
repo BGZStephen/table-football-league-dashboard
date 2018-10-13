@@ -1,0 +1,91 @@
+.players-list-item {
+  align-items: center;
+  display: flex;
+  margin-bottom: 10px;
+
+  > a {
+    color: black;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+
+    &:hover {
+      color: $brand-blue;
+    }
+  }
+
+  .positions-container {
+    display: flex;
+    align-items: flex-start;
+    min-width: 80px;
+
+    .position {
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      height: 40px;
+      width: 50%;
+      padding: 5px;
+
+      &:first-of-type {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+
+      &:last-of-type {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+
+      &.striker {
+        background: $brand-red;
+      }
+
+      &.defender {
+        background: $brand-blue;
+      }
+    }
+  }
+
+  .actions-container {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+
+    .action {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      color: #dddddd;
+      padding: 8px;
+      
+      a {
+        color: #dddddd;
+        text-decoration: none;
+      }
+
+      svg {
+        transition: 0.3s ease all;
+      }
+
+      &:hover {
+        svg.fa-pencil-alt {
+          color: $brand-green;
+        }
+
+        svg.fa-trash {
+          color: $brand-red;
+        }
+      }
+    }
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
