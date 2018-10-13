@@ -4,6 +4,7 @@ import ApiService from '../../../services/api';
 import NotificationService from '../../../services/notification';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import FormError from '../../form/form-error';
+import TeamSelectModal from '../modals/team-select-modal'
 
 class FixturesAdd extends Component {
   constructor(props) {
@@ -36,6 +37,11 @@ class FixturesAdd extends Component {
       <div className="fixtures-add full-width-container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
+          <TeamSelectModal 
+            visible={this.state.teamSelectModalVisible} 
+            onTeamSelect={this.setTeam} 
+            onClose = {this.onTeamSelectModalClose}
+          />
           <div className="row">
             <div className="col col-lg-4">
               <div className="panel panel-white">
@@ -57,12 +63,19 @@ class FixturesAdd extends Component {
                           this.state.teams[0] ? (
                             <div className="team">
                               <div class="team-remove-overlay" onClick={() => this.removeTeam(0)}>
-                                <p>Remove player</p>
+                                <p>Remove team</p>
                                 <FontAwesomeIcon icon="trash" />
                               </div>
                               <p>{this.state.teams[0].name}</p>
                               <div className="players-container">
-                                
+                                {this.state.teams[0].players.map(player => (
+                                  <div className="player">
+                                    <div class="player-icon">
+                                      <FontAwesomeIcon fixedWidth icon="user" />
+                                    </div>
+                                    {player.name}
+                                  </div>
+                                ))}
                               </div>
                             </div>
                           )
@@ -80,12 +93,19 @@ class FixturesAdd extends Component {
                           this.state.teams[1] ? (
                             <div className="team">
                               <div class="team-remove-overlay" onClick={() => this.removeTeam(0)}>
-                                <p>Remove player</p>
+                                <p>Remove team</p>
                                 <FontAwesomeIcon icon="trash" />
                               </div>
                               <p>{this.state.teams[1].name}</p>
                               <div className="players-container">
-                                
+                                {this.state.teams[1].players.map(player => (
+                                  <div className="player">
+                                    <div class="player-icon">
+                                      <FontAwesomeIcon fixedWidth icon="user" />
+                                    </div>
+                                    {player.name}
+                                  </div>
+                                ))}
                               </div>
                             </div>
                           )
@@ -124,16 +144,14 @@ class FixturesAdd extends Component {
       return;
     }
 
-    ApiService.players.create({
+    ApiService.fixtures.create({
       body: {
-        name: this.state.name,
-        striker: this.state.striker,
-        defender: this.state.defender,
+        date: this.state.date,
+        teams: this.state.teams.map(team => team._id),
       }
     }).then(res => {
-      localStorage.setItem('token', res.data.token);
-      NotificationService.show('Player created successfully');
-      this.props.history.push('/players')
+      NotificationService.show('Fixture created successfully');
+      this.props.history.push('/fixtures')
     }, err => {
       NotificationService.error(err.response.data.message)
     })
@@ -165,7 +183,7 @@ class FixturesAdd extends Component {
     return true;
   }
 
-  showTeamSelectModal() {
+  showTeamSelectModal = () => {
     this.setState({teamSelectModalVisible: true})
   }
 
@@ -181,15 +199,17 @@ class FixturesAdd extends Component {
       return;
     }
 
-    for (const teamOnePlayer of currentTeams[0].players) {
-      for (const teamTwoPlayer of currentTeams[1].players) {
-        if (teamOnePlayer._id === teamTwoPlayer._id) {
-          return NotificationService.error('Fixtures must contain 4 unique players');
-        }
-      }  
+    if (currentTeams.length >= 1) {
+      for (const teamOnePlayer of currentTeams[0].players) {
+        for (const teamTwoPlayer of team.players) {
+          if (teamOnePlayer._id === teamTwoPlayer._id) {
+            return NotificationService.error('Fixtures must contain 4 unique players');
+          }
+        }  
+      }
     }
 
-    formErrors.players = null
+    formErrors.teams = null
 
     currentTeams.push(team);
     this.setState({

@@ -39,6 +39,11 @@ class ApiService {
     index: (options = {}) =>
       this.processApiCall(_.assign({ method: 'get', url: '/private/teams/search' }, options)),
   };
+
+  fixtures = {
+		create: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'post', url: '/private/fixtures' }, options)),
+  };
   
 	processApiCall(options) {
 		const body = options.body || options.formData;

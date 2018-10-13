@@ -88,6 +88,23 @@
           }
         }
 
+        .players-container {
+          .player {
+            align-items: center;
+            display: flex;
+            margin-bottom: 10px;
+
+            .player-icon {
+              background: $brand-green;
+              border-radius: 50%;
+              color: white;
+              font-size: 10px;
+              margin-right: 10px;
+              padding: 8px;
+            }
+          }
+        }
+
         &.team-add {
           cursor: pointer;
           transition: 0.3s ease all;
@@ -108,7 +125,7 @@
         }
 
         &:hover {
-          .player-remove-overlay {
+          .team-remove-overlay {
             opacity: 1;
             pointer-events: all;
           }
