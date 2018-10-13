@@ -1,0 +1,115 @@
+.teams-list-item {
+  align-items: center;
+  display: flex;
+  margin-bottom: 10px;
+
+  > a {
+    color: black;
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    transition: 0.3s ease all;
+
+    &:hover {
+      color: $brand-blue;
+    }
+  }
+
+  .team-icon {
+    background: $brand-blue;
+    border-radius: 5px;
+    color: white;
+    padding: 8px;
+  }
+
+  .players {
+    display: none;
+    width: 50%;
+
+    a {
+      color: black;
+      text-decoration: none;
+      min-width: 50%;
+      max-width: 50%;
+      transition: 0.3s ease all;
+
+      &:hover {
+        color: $brand-blue;
+      }
+    }
+
+    .player {
+      align-items: center;
+      display: flex;
+  
+      .player-icon {
+        background: $brand-green;
+        border-radius: 50%;
+        color: white;
+        font-size: 10px;
+        margin-right: 5px;
+        padding: 8px;
+
+      }
+
+      p {
+        font-size: 14px;
+      }
+  
+      a {
+        text-decoration: none;
+        margin-right: 15px;
+      }
+  
+      &:last-of-type {
+        p {
+          margin-right: 0;
+        } 
+      }
+    }
+
+    @media(min-width: $screen-xl) {
+      display: flex;
+    }
+  }
+
+  .actions-container {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+
+    .action {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      color: #dddddd;
+      padding: 8px;
+      
+      a {
+        color: #dddddd;
+        text-decoration: none;
+      }
+
+      svg {
+        transition: 0.3s ease all;
+      }
+
+      &:hover {
+        svg.fa-pencil-alt {
+          color: $brand-green;
+        }
+
+        svg.fa-trash {
+          color: $brand-red;
+        }
+      }
+    }
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
