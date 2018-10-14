@@ -122,7 +122,7 @@ class ApiService {
   
   setDefaultHeaders() {
     const accessToken = localStorage.getItem('token');
-    
+
     if (accessToken) {
       return {'x-access-token': accessToken};
     }

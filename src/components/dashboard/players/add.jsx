@@ -108,7 +108,6 @@ class PlayerAdd extends Component {
         defender: this.state.defender,
       }
     }).then(res => {
-      localStorage.setItem('token', res.data.token);
       NotificationService.show('Player created successfully');
       this.props.history.push('/players')
     }, err => {

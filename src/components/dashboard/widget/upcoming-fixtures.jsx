@@ -20,6 +20,9 @@ class UpcomingFixturesWidget extends Component {
   }
 
   render() {
+    if (!this.state.fixtures.length) {
+      return null;
+    }
     return (
       <div className="panel panel-white">
         <div className="panel-title">

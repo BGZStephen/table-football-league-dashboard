@@ -113,7 +113,6 @@ class PlayerEdit extends Component {
         id: this.state.player._id
       }
     }).then(res => {
-      localStorage.setItem('token', res.data.token);
       NotificationService.show('Player updated successfully');
       this.props.history.push('/players')
     }, err => {
@@ -158,8 +157,7 @@ class PlayerEdit extends Component {
     .then(res => {
       this.setState({player: res.data})
     }, err => {
-      console.log(err)
-      // NotificationService.error(err.response.data.message)
+      NotificationService.error(err.response.data.message)
     })
   }
 }
