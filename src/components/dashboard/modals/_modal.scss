@@ -23,6 +23,10 @@
   .modal-content {
     margin: 0 auto;
     max-width: 480px;
+
+    &.modal-content-lg {
+      max-width: 900px;
+    }
   }
 
   .players-list-container {

@@ -1,0 +1,58 @@
+.teams-select-modal {
+  .modal-content {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    right: 50px;
+    bottom: 40px;
+
+    .panel {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow-y: auto;
+      padding-bottom: 40px;
+    }
+  }
+  
+  .teams-container {
+    align-self: stretch;
+    overflow: hidden;
+    padding: 10px;
+    > p {
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    @media(min-width: $screen-lg) {
+      &:first-of-type {
+        border-right: 2px solid black;
+      }
+    }
+  }
+
+  .submit-container {
+    margin-top: 10px;
+    button {
+      background: $brand-green;
+      border: 0;
+      cursor: pointer;
+      color: white;
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 auto;
+      padding: 10px;
+      text-transform: uppercase;
+      transition: 0.3s ease all;
+  
+      &:hover {
+        background: darken($brand-green, 10%);
+      }
+    }
+  }
+}

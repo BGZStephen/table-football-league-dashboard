@@ -4,6 +4,7 @@ import ApiService from '../../../services/api';
 import NotificationService from '../../../services/notification';
 import FormError from '../../form/form-error';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import TeamsSelectModal from '../modals/teams-select-modal';
 
 class LeaguesAdd extends Component {
   constructor({props}) {
@@ -13,6 +14,7 @@ class LeaguesAdd extends Component {
       formErrors: {},
       gamesPerSeason: null,
       teams: [],
+      teamsSelectModalVisible: false,
     }
   }
 
@@ -35,11 +37,12 @@ class LeaguesAdd extends Component {
       <div className="leagues-add full-width-container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
-          {/* <TeamsSelectModal 
-            visible={this.state.playerSelectModalVisible} 
-            onPlayerSelect={this.setPlayer} 
-            onClose = {this.onPlayerSelectModalClose}
-          /> */}
+          <TeamsSelectModal
+            preSelectedTeams={this.state.teams} 
+            visible={this.state.teamsSelectModalVisible} 
+            onTeamsSelect={this.setTeams} 
+            onClose = {this.onTeamsSelectModalClose}
+          />
           <div className="row">
             <div className="col col-sm-3">
               <div className="panel panel-white">
@@ -78,18 +81,14 @@ class LeaguesAdd extends Component {
                   </div>
                   {this.state.teams.length > 0 ? (
                     <div className="teams">
-                      {this.state.teams.map((team, index) => (
-                        <div className="team">
-                          <div class="team-remove-overlay" onClick={() => this.removeTeam(index)}>
-                            <FontAwesomeIcon icon="trash" />
-                            <p>Remove team</p>
-                          </div>
+                      {this.state.teams.map((team) => (
+                        <div className="team" key={team._id}>
                           <div className="team-name-container">
                             <p>{team.name}</p>
                           </div>
                           <div className="players-container">
                             {team.players.map(player => (
-                              <div className="player">
+                              <div className="player" key={player._id}>
                                 <div class="player-icon">
                                   <FontAwesomeIcon fixedWidth icon="user" />
                                 </div>
@@ -101,8 +100,8 @@ class LeaguesAdd extends Component {
                       ))}
                     </div>
                   ): null}
-                  <div className="teams teams-add" onClick={this.showPlayerSelectModal}>
-                    <p>Add teams</p>
+                  <div className="teams teams-add" onClick={this.showTeamsSelectModal}>
+                    <p>Select teams</p>
                     <FontAwesomeIcon icon="plus" />
                   </div>
                   <div className="input-group">
@@ -187,33 +186,22 @@ class LeaguesAdd extends Component {
   }
 
   setTeams = (teams) => {
-    const currentTeams = this.state.teams;
     const formErrors = this.state.formErrors;
-
     formErrors.teams = null
 
-    for (const team of teams) {
-      currentTeams.push(team);
-    }
-
     this.setState({
-      teams: currentTeams,
-      teamSelectModalVisible: false,
+      teams,
+      teamsSelectModalVisible: false,
       formErrors,
     })
   }
 
-  removeTeam = (index) => {
-    const currentTeams = this.state.teams;
+  onTeamsSelectModalClose = () => {
+    this.setState({teamsSelectModalVisible: false})
+  }
 
-    if (currentTeams.length === 0) {
-      return;
-    }
-
-    currentTeams.splice(index, 1);
-    this.setState({
-      teams: currentTeams,
-    })
+  showTeamsSelectModal = () => {
+    this.setState({teamsSelectModalVisible: true})
   }
 }
 
