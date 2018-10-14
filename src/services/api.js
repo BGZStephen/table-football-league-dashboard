@@ -54,6 +54,8 @@ class ApiService {
   leagues = {
 		create: (options = {}) =>
       this.processApiCall(_.assign({ method: 'post', url: '/private/leagues' }, options)),
+    index: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'get', url: '/private/leagues/search' }, options)),
   };
   
 	processApiCall(options) {
