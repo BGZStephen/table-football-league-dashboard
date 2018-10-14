@@ -11,7 +11,7 @@ class LeaguesAdd extends Component {
 
     this.state = {
       formErrors: {},
-      gamesPerSeason: 2,
+      gamesPerSeason: null,
       teams: [],
     }
   }
@@ -54,27 +54,27 @@ class LeaguesAdd extends Component {
                     <label>Games per season</label>
                     <div class="radios-container">
                       <div class="radio-group">
-                        <input type="radio" id="2" name="games" value="2" onChange={this.handleFormInputChange} />
+                        <input type="radio" id="2" name="games" value="2" onChange={this.handleGamesPerSeasonChange} />
                         <label for="2">2</label>
                       </div>
                       <div class="radio-group">
-                        <input type="radio" id="4" name="games" value="4" onChange={this.handleFormInputChange} />
+                        <input type="radio" id="4" name="games" value="4" onChange={this.handleGamesPerSeasonChange} />
                         <label for="4">4</label>
                       </div>
                       <div class="radio-group">
-                        <input type="radio" id="6" name="games" value="6" onChange={this.handleFormInputChange} />
+                        <input type="radio" id="6" name="games" value="6" onChange={this.handleGamesPerSeasonChange} />
                         <label for="6">6</label>
                       </div>
                       <div class="radio-group">
-                        <input type="radio" id="8" name="games" value="8" onChange={this.handleFormInputChange} />
+                        <input type="radio" id="8" name="games" value="8" onChange={this.handleGamesPerSeasonChange} />
                         <label for="8">8</label>
                       </div>
                     </div>
-                    {this.state.formErrors.name ? <FormError message={this.state.formErrors.name} /> : null}
+                    {this.state.formErrors.gamesPerSeason ? <FormError message={this.state.formErrors.gamesPerSeason} /> : null}
                   </div>
                   <div className="input-group">
                     <label>Teams</label>
-                    {this.state.formErrors.players ? <FormError message={this.state.formErrors.players} /> : null}
+                    {this.state.formErrors.teams ? <FormError message={this.state.formErrors.teams} /> : null}
                   </div>
                   {this.state.teams.length > 0 ? (
                     <div className="teams">
@@ -128,7 +128,13 @@ class LeaguesAdd extends Component {
   }
 
   handleGamesPerSeasonChange = (event) => {
-    this.setState({gamesPerSeason: event.target.value})
+    const formErrors = this.state.formErrors;
+    formErrors.gamesPerSeason = null
+
+    this.setState({
+      gamesPerSeason: event.target.value,
+      formErrors
+    })
   }
 
   onSubmit = () => {
@@ -158,7 +164,7 @@ class LeaguesAdd extends Component {
     }
 
     if (!this.state.name) {
-      newState.formErrors.name = 'Name is required';
+      newState.formErrors.name = 'League name is required';
       stateSetFlag = true;
     }
 
@@ -168,7 +174,7 @@ class LeaguesAdd extends Component {
     }
 
     if (this.state.teams.length < 3) {
-      newState.formErrors.players = 'A league requires at least 3 teams';
+      newState.formErrors.teams = 'A league requires at least 3 teams';
       stateSetFlag = true;
     }
 
@@ -178,6 +184,36 @@ class LeaguesAdd extends Component {
     }
 
     return true;
+  }
+
+  setTeams = (teams) => {
+    const currentTeams = this.state.teams;
+    const formErrors = this.state.formErrors;
+
+    formErrors.teams = null
+
+    for (const team of teams) {
+      currentTeams.push(team);
+    }
+
+    this.setState({
+      teams: currentTeams,
+      teamSelectModalVisible: false,
+      formErrors,
+    })
+  }
+
+  removeTeam = (index) => {
+    const currentTeams = this.state.teams;
+
+    if (currentTeams.length === 0) {
+      return;
+    }
+
+    currentTeams.splice(index, 1);
+    this.setState({
+      teams: currentTeams,
+    })
   }
 }
 

@@ -228,7 +228,7 @@ class FixtureAdd extends Component {
 
     currentTeams.splice(index, 1);
     this.setState({
-      players: currentTeams,
+      teams: currentTeams,
     })
   }
 }
