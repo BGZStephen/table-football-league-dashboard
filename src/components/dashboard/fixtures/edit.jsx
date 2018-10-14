@@ -144,7 +144,7 @@ class FixtureEdit extends Component {
     const newState = this.state;
 
     newState.formErrors[id] = null;
-    newState[id] = value;
+    newState.fixture[id] = value;
     this.setState({state: newState})
   }
 

@@ -1,0 +1,162 @@
+.leagues-add {
+  form {
+    padding: 0 5px;
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+
+      label {
+        margin-bottom: 5px;
+      }
+
+      input[type='text'] {
+        border: 1px solid $brand-grey;
+        height: 100%;
+        padding: 8px;
+        width: 100%;
+      }
+
+      .radios-container {
+        display: flex;
+        width: 100%;
+        padding: 0 5px;
+
+        .radio-group {
+          width: 25%;
+          display: flex;
+          align-items: center;
+
+          label {
+            margin-left: 5px;
+            position: relative;
+            top: 2px;
+            width: 100%;
+          }
+        }
+      }
+
+      button {
+        background: $brand-green;
+        border: 0;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px;
+        text-transform: uppercase;
+        transition: 0.3s ease all;
+
+        &:hover {
+          background: darken($brand-green, 10%);
+        }
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    .teams {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      margin-bottom: 10px;
+      position: relative;
+
+      > p {
+        font-size: 18px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .team {
+        align-items: center;
+        border-bottom: 1px solid #eeeeee;
+        display: flex;
+        width: 100%;
+        padding: 15px 0;
+        position: relative;
+
+        .team-name-container {
+          width: 30%;
+        }
+
+        .team-remove-overlay {
+          background: rgba(black, .8);
+          cursor: pointer;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          opacity: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none;
+          transition: 0.3s ease all;
+
+          > p {
+            color: white;
+          }
+
+          svg {
+            color: white;
+            margin-right: 15px;
+          }
+        }
+
+        .players-container {
+          display: flex;
+          width: 70%;
+
+          .player {
+            align-items: center;
+            display: flex;
+            width: 50%;
+  
+            .player-icon {
+              background: $brand-green;
+              border-radius: 50%;
+              color: white;
+              font-size: 10px;
+              margin-right: 10px;
+              padding: 8px;
+            }
+          }
+        }
+
+        &:hover {
+          .team-remove-overlay {
+            opacity: 1;
+            pointer-events: all;
+          }
+        }
+      }
+
+
+      &.teams-add {
+        cursor: pointer;
+        transition: 0.3s ease all;
+
+        p {
+          margin-bottom: 10px;
+        }
+
+        p, svg {
+          color: black;
+        }
+
+        &:hover {
+          p, svg {
+            color: $brand-blue;
+          }
+        }
+      }
+    }
+  }
+}

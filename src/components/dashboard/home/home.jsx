@@ -26,7 +26,7 @@ class Home extends Component {
             <div className="col col-sm-3">
               <div className="panel panel-white">
                 <QuickActions
-                  onAddLeage={this.onAddLeague}
+                  onAddLeague={this.onAddLeague}
                   onAddPlayer={this.onAddPlayer}
                   onAddFixture={this.onAddFixture}
                   onAddTeam={this.onAddTeam}

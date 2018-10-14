@@ -44,7 +44,7 @@ class ViewWrapper extends Component {
             <Route exact path='/teams/:id/edit' component={TeamEdit} />
             <Route exact path='/fixtures' component={Fixtures} />
             <Route exact path='/fixtures/add' component={FixtureAdd} />
-            {/* <Route exact path='/fixtures/:id' component={TeamView} /> */}
+            {/* <Route exact path='/fixtures/:id' component={FixtureView} /> */}
             <Route exact path='/fixtures/:id/edit' component={FixtureEdit} />
             <Route exact path='/leagues' component={Leagues} />
             <Route exact path='/leagues/add' component={LeaguesAdd} />
