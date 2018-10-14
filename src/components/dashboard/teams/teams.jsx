@@ -59,6 +59,7 @@ class Teams extends Component {
   }
 
   goToTeam = (team) => {
+    return;
     this.props.history.push(`/teams/${team._id}`)
   }
 }

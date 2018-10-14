@@ -55,6 +55,7 @@ class Leagues extends Component {
   }
 
   goToLeague = (league) => {
+    return;
     this.props.history.push(`/leagues/${league._id}`)
   }
 }

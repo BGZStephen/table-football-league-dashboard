@@ -29,7 +29,7 @@ class UpcomingFixturesWidget extends Component {
             <p>Upcoming fixtures</p>
         </div>
         <div className="upcoming-fixtures">
-          <FixturesList fixtures={this.state.fixtures}/>
+          <FixturesList fixtures={this.state.fixtures} onFixtureSelect={this.goToFixture}/>
         </div>
       </div>
     )
@@ -57,6 +57,11 @@ class UpcomingFixturesWidget extends Component {
 
   static getDerivedStateFromProps(newProps) {
     return newProps;
+  }
+
+  goToFixture = (fixture) => {
+    return;
+    this.props.history.push(`/fixtures/${fixture._id}`)
   }
 }
 

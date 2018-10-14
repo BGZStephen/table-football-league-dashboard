@@ -59,6 +59,7 @@ class Fixtures extends Component {
   }
 
   goToFixture = (fixture) => {
+    return;
     this.props.history.push(`/fixtures/${fixture._id}`)
   }
 }
