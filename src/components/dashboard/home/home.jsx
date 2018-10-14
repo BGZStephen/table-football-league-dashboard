@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs'
-import QuickActions from '../widget/quick-actions';
+import QuickActionsWidget from '../widget/quick-actions';
+import UpcomingFixturesWidget from '../widget/upcoming-fixtures';
 
 class Home extends Component {
   constructor({props}) {
@@ -25,11 +26,27 @@ class Home extends Component {
           <div className="row">
             <div className="col col-sm-3">
               <div className="panel panel-white">
-                <QuickActions
+                <div className="panel-title">
+                  <p>Quick actions</p>
+                </div>
+                <QuickActionsWidget
                   onAddLeague={this.onAddLeague}
                   onAddPlayer={this.onAddPlayer}
                   onAddFixture={this.onAddFixture}
                   onAddTeam={this.onAddTeam}
+                />
+              </div>
+            </div>
+            <div className="col col-sm-3">
+              <div className="panel panel-white">
+                <div className="panel-title">
+                  <p>Upcoming fixtures</p>
+                </div>
+                <UpcomingFixturesWidget
+                  // onAddLeague={this.onAddLeague}
+                  // onAddPlayer={this.onAddPlayer}
+                  // onAddFixture={this.onAddFixture}
+                  // onAddTeam={this.onAddTeam}
                 />
               </div>
             </div>

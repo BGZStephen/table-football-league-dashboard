@@ -1,5 +1,7 @@
 .panel {
+  max-height: calc(100vh - 85px);
   padding: 10px 5px;
+  overflow-y: auto;
 
   .panel-title {
     font-weight: 600;

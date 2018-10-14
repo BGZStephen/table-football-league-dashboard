@@ -9,7 +9,6 @@ class QuickActionsWidget extends Component {
   render() {
     return (
       <div className="quick-actions-widget">
-        <p>Quick actions</p>
         <div className="actions-container">
           <div className="row">
             <div className="col col-md-6">

@@ -24,13 +24,6 @@ class TeamsListItem extends Component {
           <FontAwesomeIcon icon="users" />
         </div>
         <p>Teams: {this.state.league.teams.length}</p>
-        {this.state.options ? (
-          <div className="actions-container">
-            <div className="action">
-              <FontAwesomeIcon icon="trash" />
-            </div>
-          </div>
-        ): null}
       </div>
     )
   }

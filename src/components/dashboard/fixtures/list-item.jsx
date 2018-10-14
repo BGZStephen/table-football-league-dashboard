@@ -26,16 +26,13 @@ class FixturesListItem extends Component {
           <p className="team-seperator">VS</p>
           <p><strong>{this.state.fixture.teams[1].name}</strong></p>
         </div>
-        {this.state.options ? (
+        {this.state.options && this.state.fixture.type !== 'league' ? (
           <div className="actions-container">
             <Link to={`/fixtures/${this.state.fixture._id}/edit`}>
               <div className="action">
                 <FontAwesomeIcon icon="pencil-alt" />
               </div>
             </Link>
-            <div className="action">
-              <FontAwesomeIcon icon="trash" />
-            </div>
           </div>
         ): null}
       </div>

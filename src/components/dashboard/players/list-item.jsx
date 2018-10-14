@@ -36,9 +36,6 @@ class PlayersListItem extends Component {
                 <FontAwesomeIcon icon="pencil-alt" />
               </div>
             </Link>
-            <div className="action">
-              <FontAwesomeIcon icon="trash" />
-            </div>
           </div>
         ): null}
       </div>

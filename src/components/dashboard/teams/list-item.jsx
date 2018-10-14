@@ -38,18 +38,6 @@ class TeamsListItem extends Component {
             </div>
           </Link>
         </div>
-        {this.state.options ? (
-          <div className="actions-container">
-            <Link to={`/teams/${this.state.team._id}/edit`}>
-              <div className="action">
-                <FontAwesomeIcon icon="pencil-alt" />
-              </div>
-            </Link>
-            <div className="action">
-              <FontAwesomeIcon icon="trash" />
-            </div>
-          </div>
-        ): null}
       </div>
     )
   }

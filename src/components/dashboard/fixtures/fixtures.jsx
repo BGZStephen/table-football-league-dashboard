@@ -33,7 +33,7 @@ class Fixtures extends Component {
           <div className="row">
             <div className="col col-md-4">
               <div className="panel panel-white">
-                <div className="panel-title">Teams</div>
+                <div className="panel-title">Fixtures</div>
                 <div className="fixtures-list-container">
                   <FixturesList fixtures={this.state.fixtures} options={true} onFixtureSelect={this.goToFixture}/>
                 </div>
