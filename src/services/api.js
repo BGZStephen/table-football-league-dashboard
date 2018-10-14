@@ -45,6 +45,10 @@ class ApiService {
       this.processApiCall(_.assign({ method: 'post', url: '/private/fixtures' }, options)),
     index: (options = {}) =>
       this.processApiCall(_.assign({ method: 'get', url: '/private/fixtures/search' }, options)),
+    get: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'get', url: '/private/fixtures/:id' }, options)),
+    update: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'put', url: '/private/fixtures/:id' }, options)),
   };
   
 	processApiCall(options) {

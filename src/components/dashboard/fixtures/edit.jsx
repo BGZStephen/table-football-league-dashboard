@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, {Component} from 'react';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import ApiService from '../../../services/api';
@@ -6,16 +7,20 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import FormError from '../../form/form-error';
 import TeamSelectModal from '../modals/team-select-modal'
 
-class FixtureAdd extends Component {
+class FixtureEdit extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       formErrors: {},
-      name: '',
-      teams: [],
+      fixture: {
+        date: '',
+        teams: [],
+      },
       teamSelectModalVisible: false,
     }
+
+    this.fetchFixture()
   }
 
   render() {
@@ -28,8 +33,8 @@ class FixtureAdd extends Component {
         link: '/fixtures'
       },
       {
-        label: 'add',
-        link: '/fixtures/add'
+        label: `${this.state.fixture.teams[0] ? this.state.fixture.teams[0].name : ''} vs ${this.state.fixture.teams[1] ? this.state.fixture.teams[1].name : ''}`,
+        link: `/fixtures/${this.state.fixture._id}`
       },
     ]
 
@@ -45,11 +50,11 @@ class FixtureAdd extends Component {
           <div className="row">
             <div className="col col-lg-4">
               <div className="panel panel-white">
-                <p className="panel-title">Add a fixture</p>
+                <p className="panel-title">Edit a fixture</p>
                 <form>
                   <div className="input-group">
                     <label>Date</label>
-                    <input type="date" id="date" name="date" onChange={this.handleFormInputChange} />
+                    <input type="date" id="date" name="date" value={moment(this.state.fixture.date).format('YYYY-MM-DD')} onChange={this.handleFormInputChange} />
                     {this.state.formErrors.date ? <FormError message={this.state.formErrors.date} /> : null}
                   </div>
                   <div className="input-group">
@@ -60,15 +65,15 @@ class FixtureAdd extends Component {
                     <div className="row">
                       <div className="col col-xl-5">
                         {
-                          this.state.teams[0] ? (
+                          this.state.fixture.teams[0] ? (
                             <div className="team">
                               <div class="team-remove-overlay" onClick={() => this.removeTeam(0)}>
                                 <p>Remove team</p>
                                 <FontAwesomeIcon icon="trash" />
                               </div>
-                              <p>{this.state.teams[0].name}</p>
+                              <p>{this.state.fixture.teams[0].name}</p>
                               <div className="players-container">
-                                {this.state.teams[0].players.map(player => (
+                                {this.state.fixture.teams[0].players.map(player => (
                                   <div className="player">
                                     <div class="player-icon">
                                       <FontAwesomeIcon fixedWidth icon="user" />
@@ -90,15 +95,15 @@ class FixtureAdd extends Component {
                       </div>
                       <div className="col col-xl-5">
                         {
-                          this.state.teams[1] ? (
+                          this.state.fixture.teams[1] ? (
                             <div className="team">
                               <div class="team-remove-overlay" onClick={() => this.removeTeam(0)}>
                                 <p>Remove team</p>
                                 <FontAwesomeIcon icon="trash" />
                               </div>
-                              <p>{this.state.teams[1].name}</p>
+                              <p>{this.state.fixture.teams[1].name}</p>
                               <div className="players-container">
-                                {this.state.teams[1].players.map(player => (
+                                {this.state.fixture.teams[1].players.map(player => (
                                   <div className="player">
                                     <div class="player-icon">
                                       <FontAwesomeIcon fixedWidth icon="user" />
@@ -129,6 +134,10 @@ class FixtureAdd extends Component {
     )
   }
 
+  static getDerivedStateFromProps(newProps) {
+    return newProps;
+  }
+
   handleFormInputChange = (event) => {
     const id = event.target.id;
     const value = event.target.value;
@@ -144,13 +153,13 @@ class FixtureAdd extends Component {
       return;
     }
 
-    ApiService.fixtures.create({
-      body: {
-        date: this.state.date,
-        teams: this.state.teams.map(team => team._id),
-      }
+    ApiService.fixtures.update({
+      params: {
+        id: this.state.fixture._id
+      },
+      body: this.state.fixture
     }).then(res => {
-      NotificationService.show('Fixture created successfully');
+      NotificationService.show('Fixture updated successfully');
       this.props.history.push('/fixtures')
     }, err => {
       NotificationService.error(err.response.data.message)
@@ -165,12 +174,12 @@ class FixtureAdd extends Component {
       newState.formErrors[key] = null;
     }
 
-    if (!this.state.date) {
+    if (!this.state.fixture.date) {
       newState.formErrors.date = 'Date is required';
       stateSetFlag = true;
     }
 
-    if (this.state.teams.length < 2) {
+    if (this.state.fixture.teams.length < 2) {
       newState.formErrors.teams = '2 teams are required for a fixture';
       stateSetFlag = true;
     }
@@ -192,7 +201,7 @@ class FixtureAdd extends Component {
   }
 
   setTeam = (team) => {
-    const currentTeams = this.state.teams;
+    const currentTeams = this.state.fixture.teams;
     const formErrors = this.state.formErrors;
 
     if (currentTeams.length >= 2) {
@@ -220,17 +229,36 @@ class FixtureAdd extends Component {
   }
 
   removeTeam = (index) => {
-    const currentTeams = this.state.teams;
+    const currentFixtures = this.state.fixture.teams;
 
-    if (currentTeams.length === 0) {
+    if (currentFixtures.length === 0) {
       return;
     }
 
-    currentTeams.splice(index, 1);
+    currentFixtures.splice(index, 1);
     this.setState({
-      players: currentTeams,
+      fixtures: currentFixtures,
+    })
+  }
+
+  fetchFixture = () => {
+    const id =this.props.match.params.id;
+
+    ApiService.fixtures.get({
+      params: {
+        id,
+      },
+      query: {
+        teams: true,
+        players: true,
+      }
+    })
+    .then(res => {
+      this.setState({fixture: res.data})
+    }, err => {
+      NotificationService.error(err.response.data.message)
     })
   }
 }
 
-export default FixtureAdd;
+export default FixtureEdit;

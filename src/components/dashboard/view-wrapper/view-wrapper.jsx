@@ -10,7 +10,8 @@ import TeamEdit from '../teams/edit';
 import Leagues from '../leagues/leagues';
 import LeaguesAdd from '../leagues/add';
 import Fixtures from '../fixtures/fixtures';
-import FixturesAdd from '../fixtures/add';
+import FixtureAdd from '../fixtures/add';
+import FixtureEdit from '../fixtures/edit';
 import Players from '../players/players';
 import PlayerAdd from '../players/add';
 import PlayerEdit from '../players/edit';
@@ -42,7 +43,9 @@ class ViewWrapper extends Component {
             <Route exact path='/teams/:id' component={TeamView} />
             <Route exact path='/teams/:id/edit' component={TeamEdit} />
             <Route exact path='/fixtures' component={Fixtures} />
-            <Route exact path='/fixtures/add' component={FixturesAdd} />
+            <Route exact path='/fixtures/add' component={FixtureAdd} />
+            {/* <Route exact path='/fixtures/:id' component={TeamView} /> */}
+            <Route exact path='/fixtures/:id/edit' component={FixtureEdit} />
             <Route exact path='/leagues' component={Leagues} />
             <Route exact path='/leagues/add' component={LeaguesAdd} />
           </Switch>

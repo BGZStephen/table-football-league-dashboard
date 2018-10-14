@@ -156,10 +156,10 @@ class PlayerEdit extends Component {
       }
     })
     .then(res => {
-      console.log(res)
       this.setState({player: res.data})
     }, err => {
-      NotificationService.error(err.response.data.message)
+      console.log(err)
+      // NotificationService.error(err.response.data.message)
     })
   }
 }
