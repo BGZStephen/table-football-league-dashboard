@@ -1,0 +1,48 @@
+.player-summary-widget {
+  padding: 0 10px;
+
+  .summary-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .group-label {
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .positions-container {
+      display: flex;
+      justify-content: space-between;
+      .position {
+        align-items: center;
+        display: flex;
+        font-weight: 600;
+        padding: 8px 10px;
+        width: 50%;
+        margin-right: 10px;
+        color: white;
+        svg {
+          margin-right: 10px;
+        }
+  
+        &.defender {
+          background: $brand-blue;
+        }
+
+        &.striker {
+          background: $brand-red;
+        }
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

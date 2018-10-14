@@ -26,43 +26,18 @@ class Home extends Component {
         <div className="content-container container-grey">
           <div className="row">
             <div className="col col-xl-3">
-              <div className="panel panel-white">
-                <div className="panel-title">
-                  <p>Quick actions</p>
-                </div>
-                <QuickActionsWidget
-                  onAddLeague={this.onAddLeague}
-                  onAddPlayer={this.onAddPlayer}
-                  onAddFixture={this.onAddFixture}
-                  onAddTeam={this.onAddTeam}
-                />
-              </div>
-            </div>
-            <div className="col col-xl-3">
-              <div className="panel panel-white">
-                <div className="panel-title">
-                  <p>Upcoming fixtures</p>
-                </div>
-                <UpcomingFixturesWidget
-                  // onAddLeague={this.onAddLeague}
-                  // onAddPlayer={this.onAddPlayer}
-                  // onAddFixture={this.onAddFixture}
-                  // onAddTeam={this.onAddTeam}
-                />
-              </div>
+              <QuickActionsWidget
+                onAddLeague={this.onAddLeague}
+                onAddPlayer={this.onAddPlayer}
+                onAddFixture={this.onAddFixture}
+                onAddTeam={this.onAddTeam}
+              />
             </div>
             <div className="col col-xl-4">
-              <div className="panel panel-white">
-                <div className="panel-title">
-                  <p>Top Teams</p>
-                </div>
-                <TopTeamsWidget
-                  // onAddLeague={this.onAddLeague}
-                  // onAddPlayer={this.onAddPlayer}
-                  // onAddFixture={this.onAddFixture}
-                  // onAddTeam={this.onAddTeam}
-                />
-              </div>
+              <TopTeamsWidget/>
+            </div>
+            <div className="col col-xl-3">
+              <UpcomingFixturesWidget/>
             </div>
           </div>
         </div>

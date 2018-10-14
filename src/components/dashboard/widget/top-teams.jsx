@@ -15,9 +15,18 @@ class TopTeamsWidget extends Component {
   }
 
   render() {
+    if (!this.state.teams.length) {
+      return null;
+    }
+
     return (
-      <div className="upcoming-fixtures">
-        <TeamsList teams={this.state.teams}/>
+      <div className="panel panel-white">
+        <div className="panel-title">
+          <p>Top Teams</p>
+        </div>
+        <div className="upcoming-fixtures">
+          <TeamsList teams={this.state.teams}/>
+        </div>
       </div>
     )
   }
