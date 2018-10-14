@@ -67,15 +67,15 @@ class FixtureEdit extends Component {
                         {
                           this.state.fixture.teams[0] ? (
                             <div className="team">
-                              <div class="team-remove-overlay" onClick={() => this.removeTeam(0)}>
+                              <div className="team-remove-overlay" onClick={() => this.removeTeam(0)}>
                                 <p>Remove team</p>
                                 <FontAwesomeIcon icon="trash" />
                               </div>
                               <p>{this.state.fixture.teams[0].name}</p>
                               <div className="players-container">
                                 {this.state.fixture.teams[0].players.map(player => (
-                                  <div className="player">
-                                    <div class="player-icon">
+                                  <div className="player" key={player._id}>
+                                    <div className="player-icon">
                                       <FontAwesomeIcon fixedWidth icon="user" />
                                     </div>
                                     {player.name}
@@ -97,7 +97,7 @@ class FixtureEdit extends Component {
                         {
                           this.state.fixture.teams[1] ? (
                             <div className="team">
-                              <div class="team-remove-overlay" onClick={() => this.removeTeam(0)}>
+                              <div className="team-remove-overlay" onClick={() => this.removeTeam(0)}>
                                 <p>Remove team</p>
                                 <FontAwesomeIcon icon="trash" />
                               </div>
@@ -105,7 +105,7 @@ class FixtureEdit extends Component {
                               <div className="players-container">
                                 {this.state.fixture.teams[1].players.map(player => (
                                   <div className="player">
-                                    <div class="player-icon">
+                                    <div className="player-icon">
                                       <FontAwesomeIcon fixedWidth icon="user" />
                                     </div>
                                     {player.name}

@@ -50,6 +50,11 @@ class ApiService {
     update: (options = {}) =>
       this.processApiCall(_.assign({ method: 'put', url: '/private/fixtures/:id' }, options)),
   };
+
+  leagues = {
+		create: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'post', url: '/private/leagues' }, options)),
+  };
   
 	processApiCall(options) {
 		const body = options.body || options.formData;

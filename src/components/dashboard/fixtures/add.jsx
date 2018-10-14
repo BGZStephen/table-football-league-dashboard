@@ -62,7 +62,7 @@ class FixtureAdd extends Component {
                         {
                           this.state.teams[0] ? (
                             <div className="team">
-                              <div class="team-remove-overlay" onClick={() => this.removeTeam(0)}>
+                              <div className="team-remove-overlay" onClick={() => this.removeTeam(0)}>
                                 <p>Remove team</p>
                                 <FontAwesomeIcon icon="trash" />
                               </div>
@@ -70,7 +70,7 @@ class FixtureAdd extends Component {
                               <div className="players-container">
                                 {this.state.teams[0].players.map(player => (
                                   <div className="player">
-                                    <div class="player-icon">
+                                    <div className="player-icon">
                                       <FontAwesomeIcon fixedWidth icon="user" />
                                     </div>
                                     {player.name}
@@ -92,7 +92,7 @@ class FixtureAdd extends Component {
                         {
                           this.state.teams[1] ? (
                             <div className="team">
-                              <div class="team-remove-overlay" onClick={() => this.removeTeam(0)}>
+                              <div className="team-remove-overlay" onClick={() => this.removeTeam(0)}>
                                 <p>Remove team</p>
                                 <FontAwesomeIcon icon="trash" />
                               </div>
@@ -100,7 +100,7 @@ class FixtureAdd extends Component {
                               <div className="players-container">
                                 {this.state.teams[1].players.map(player => (
                                   <div className="player">
-                                    <div class="player-icon">
+                                    <div className="player-icon">
                                       <FontAwesomeIcon fixedWidth icon="user" />
                                     </div>
                                     {player.name}

@@ -62,7 +62,7 @@ class TeamAdd extends Component {
                         {
                           this.state.players[0] ? (
                             <div className="player">
-                              <div class="player-remove-overlay" onClick={() => this.removePlayer(0)}>
+                              <div className="player-remove-overlay" onClick={() => this.removePlayer(0)}>
                                 <p>Remove player</p>
                                 <FontAwesomeIcon icon="trash" />
                               </div>
@@ -91,7 +91,7 @@ class TeamAdd extends Component {
                         {
                           this.state.players[1] ? (
                             <div className="player">
-                              <div class="player-remove-overlay" onClick={() => this.removePlayer(1)}>
+                              <div className="player-remove-overlay" onClick={() => this.removePlayer(1)}>
                                 <p>Remove player</p>
                                 <FontAwesomeIcon icon="trash" />
                               </div>

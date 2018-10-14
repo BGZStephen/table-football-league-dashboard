@@ -12,6 +12,7 @@ class LeaguesAdd extends Component {
 
     this.state = {
       formErrors: {},
+      name: '',
       gamesPerSeason: null,
       teams: [],
       teamsSelectModalVisible: false,
@@ -55,22 +56,22 @@ class LeaguesAdd extends Component {
                   </div>
                   <div className="input-group">
                     <label>Games per season</label>
-                    <div class="radios-container">
-                      <div class="radio-group">
+                    <div className="radios-container">
+                      <div className="radio-group">
                         <input type="radio" id="2" name="games" value="2" onChange={this.handleGamesPerSeasonChange} />
-                        <label for="2">2</label>
+                        <label htmlFor="2">2</label>
                       </div>
-                      <div class="radio-group">
+                      <div className="radio-group">
                         <input type="radio" id="4" name="games" value="4" onChange={this.handleGamesPerSeasonChange} />
-                        <label for="4">4</label>
+                        <label htmlFor="4">4</label>
                       </div>
-                      <div class="radio-group">
+                      <div className="radio-group">
                         <input type="radio" id="6" name="games" value="6" onChange={this.handleGamesPerSeasonChange} />
-                        <label for="6">6</label>
+                        <label htmlFor="6">6</label>
                       </div>
-                      <div class="radio-group">
+                      <div className="radio-group">
                         <input type="radio" id="8" name="games" value="8" onChange={this.handleGamesPerSeasonChange} />
-                        <label for="8">8</label>
+                        <label htmlFor="8">8</label>
                       </div>
                     </div>
                     {this.state.formErrors.gamesPerSeason ? <FormError message={this.state.formErrors.gamesPerSeason} /> : null}
@@ -89,7 +90,7 @@ class LeaguesAdd extends Component {
                           <div className="players-container">
                             {team.players.map(player => (
                               <div className="player" key={player._id}>
-                                <div class="player-icon">
+                                <div className="player-icon">
                                   <FontAwesomeIcon fixedWidth icon="user" />
                                 </div>
                                 {player.name}
@@ -141,14 +142,15 @@ class LeaguesAdd extends Component {
       return;
     }
 
-    ApiService.teams.create({
+    ApiService.leagues.create({
       body: {
         name: this.state.name,
-        players: this.state.players.map(player => player._id),
+        gamesPerSeason: this.state.gamesPerSeason,
+        teams: this.state.teams.map(team => team._id)
       }
     }).then(res => {
-      NotificationService.show('Team created successfully');
-      this.props.history.push('/teams')
+      NotificationService.show('League created successfully');
+      this.props.history.push('/leagues')
     }, err => {
       NotificationService.error(err.response.data.message)
     })
