@@ -5,7 +5,7 @@ class Register extends Component {
   render() {
     return (
       <div className="login">
-        <LoginForm onSuccess={() => this.goTo('/dashboard')} onRegister={() => this.goTo('/register')} /> 
+        <LoginForm onSuccess={() => this.goTo('/dashboard/home')} onRegister={() => this.goTo('/register')} /> 
       </div>
     )
   }
