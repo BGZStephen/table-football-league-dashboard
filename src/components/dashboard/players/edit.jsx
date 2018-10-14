@@ -33,8 +33,12 @@ class PlayerEdit extends Component {
         link: '/players'
       },
       {
-        label: 'add',
-        link: '/players/add'
+        label: this.state.player.name.toLowerCase(),
+        link: `/players/${this.state.player._id}`
+      },
+      {
+        label: 'edit',
+        link: `/players/${this.state.player._id}/edit`
       },
     ]
 

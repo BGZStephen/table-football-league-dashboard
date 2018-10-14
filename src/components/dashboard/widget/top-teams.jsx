@@ -25,7 +25,7 @@ class TopTeamsWidget extends Component {
           <p>Top Teams</p>
         </div>
         <div className="upcoming-fixtures">
-          <TeamsList teams={this.state.teams}/>
+          <TeamsList teams={this.state.teams} onTeamSelect={() => {}}/>
         </div>
       </div>
     )
