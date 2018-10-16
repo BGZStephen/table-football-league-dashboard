@@ -133,6 +133,13 @@ class RegisterForm extends Component {
       stateSetFlag = true;
     }
 
+    // 1 lowercase, 1 uppercase, 1 numeric, 8 char minimum
+    const passwordStrengthRegexp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+    if (!this.state.password.match(passwordStrengthRegexp)) {
+      newState.formErrors.password = 'Password must contain 1 lowercase character, 1 uppercase character, 1 number and be at leaset 8 characters long';
+      stateSetFlag = true;
+    };
+
     if (!this.state.confirmPassword && this.state.password) {
       newState.formErrors.confirmPassword = 'Please confirm your password';
       stateSetFlag = true;
