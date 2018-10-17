@@ -1,35 +1,24 @@
+import { EventEmitter } from "events";
+
 class NotificationService {
-  hideTimer = null;
-
-  show(message, delay = 3000) {
-    const el = document.getElementById('notification-service');
-    el.innerHTML = `<p>${message}</p>`;
-    el.classList.add('visible', 'success');
-
-    if (this.hideTimer) {
-      clearTimeout(this.hideTimer);
-    }
-    this.hideTimer = setTimeout(this.hide, delay);
+  constructor() {
+    this.eventEmitter = new EventEmitter()
   }
 
-  error(message, delay = 3000) {
-    const el = document.getElementById('notification-service');
-    el.innerHTML = `<p>${message}</p>`;
-    el.classList.add('visible', 'danger');
-
-    if (this.hideTimer) {
-      clearTimeout(this.hideTimer);
-    }
-    this.hideTimer = setTimeout(this.hide, delay);
+  on = (eventName, listener) => {
+    this.eventEmitter.on(eventName, listener); 
   }
 
-  hide() {
-    const el = document.getElementById('notification-service');
-    el.classList.remove('visible', 'danger', 'success');
-    setTimeout(() => {
-      el.innerHTML = '';
-    }, 400);
+  show = (message) => {
+    this.eventEmitter.emit('show', message)
+  }
+
+  error = (message, delay = 3000) => {
+    this.eventEmitter.emit('error', message)
   }
 }
 
-export default new NotificationService();
+const instance = new NotificationService()
+Object.freeze(instance);
+
+export default instance;

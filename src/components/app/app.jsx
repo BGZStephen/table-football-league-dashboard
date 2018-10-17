@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Login from '../login/login'
 import Register from '../register/register'
 import ViewWrapper from '../dashboard/view-wrapper/view-wrapper';
+import Notification from '../notification/notification';
 
 class App extends Component {
   render() {
@@ -17,7 +18,7 @@ class App extends Component {
             <Route path='/register' component={Register}/>
             <Route path='/dashboard' component={ViewWrapper}/>
           </Switch>
-          <div id="notification-service"></div>
+          <Notification />
         </div>
       </BrowserRouter>
     )
