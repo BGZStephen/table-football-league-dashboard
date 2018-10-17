@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ApiService from '../../services/api';
 import NotificationService from '../../services/notification';
 import FormError from '../form/form-error';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {Link} from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -29,14 +29,14 @@ class Login extends Component {
             <div className="icon">
               <FontAwesomeIcon icon="envelope" fixedWidth />
             </div>
-            <input id="email" name="email" type="text" placeholder="Email" value={this.state.email} onChange={this.handleFormInputChange}/>
+            <input id="email" name="email" type="text" placeholder="Email" value={this.state.email} onChange={this.handleFormInputChange} />
           </div>
           {this.state.formErrors.email ? <FormError message={this.state.formErrors.email} /> : null}
           <div className="input-with-icon">
             <div className="icon">
               <FontAwesomeIcon icon="lock" fixedWidth />
             </div>
-            <input id="password" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleFormInputChange}/>
+            <input id="password" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleFormInputChange} />
           </div>
           {this.state.formErrors.password ? <FormError message={this.state.formErrors.password} /> : null}
           <div className="actions-container">
@@ -73,7 +73,7 @@ class Login extends Component {
       NotificationService.show('Login successful')
       this.props.onSuccess();
     }, err => {
-      NotificationService.show(err.response.data.message)
+      NotificationService.error(err.response.data.message)
     })
   }
 
