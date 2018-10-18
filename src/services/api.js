@@ -15,7 +15,11 @@ class ApiService {
 		authenticate: (options = {}) =>
 			this.processApiCall(
 				_.assign({ method: 'post', url: '/users/authenticate' }, options),
-			),
+      ),
+    passwordReset: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'post', url: '/users/password-reset' }, options)),    
+    passwordResetToken: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'get', url: '/users/password-reset' }, options)),    
   };
 
   players = {

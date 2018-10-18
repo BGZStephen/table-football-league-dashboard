@@ -3,27 +3,27 @@ import ApiService from '../../services/api';
 import NotificationService from '../../services/notification';
 import FormError from '../form/form-error';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {Link} from 'react-router-dom';
 
-class Login extends Component {
+class PasswordResetForm extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       email: '',
       password: '',
+      confirmPassword: '',
       formErrors: {
         email: null,
-        password: null
+        password: null,
+        confirmPassword: null,
       }
     }
   }
 
   render() {
     return (
-      <div className="login-form">
-        <h1>Login</h1>
-        <p>Sign In to your account</p>
+      <div className="password-reset-form">
+        <h1>Password Reset</h1>
         <form>
           <div className="input-with-icon">
             <div className="icon">
@@ -36,12 +36,18 @@ class Login extends Component {
             <div className="icon">
               <FontAwesomeIcon icon="lock" fixedWidth />
             </div>
-            <input id="password" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleFormInputChange} />
+            <input id="password" name="password" type="password" placeholder="New password" onChange={this.handleFormInputChange} />
           </div>
           {this.state.formErrors.password ? <FormError message={this.state.formErrors.password} /> : null}
+          <div className="input-with-icon">
+            <div className="icon">
+              <FontAwesomeIcon icon="lock" fixedWidth />
+            </div>
+            <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm password" onChange={this.handleFormInputChange} />
+          </div>
+          {this.state.formErrors.confirmPassword ? <FormError message={this.state.formErrors.confirmPassword} /> : null}
           <div className="actions-container">
-            <button type="button" onClick={this.authenticate}>Login</button>
-            <Link to="/register">Get registered</Link>
+            <button type="button" onClick={this.resetPassword}>Rest password</button>
           </div>
         </form>
       </div>
@@ -58,22 +64,20 @@ class Login extends Component {
     this.setState({state: newState})
   }
 
-  authenticate = () => {
+  resetPassword = () => {
     if (!this.isFormValid()) {
       return;
     }
     
-    ApiService.users.authenticate({
+    ApiService.users.passwordReset({
       body: {
         email: this.state.email,
         password: this.state.password
       }
     }).then(res => {
-      localStorage.setItem('token', res.data.token)
-      NotificationService.show('Login successful')
+      NotificationService.show('Password reset, please log in')
       this.props.onSuccess();
     }, err => {
-      console.log(err)
       NotificationService.error(err.response.data.message)
     })
   }
@@ -96,6 +100,23 @@ class Login extends Component {
       stateSetFlag = true;
     }
 
+    // 1 lowercase, 1 uppercase, 1 numeric, 8 char minimum
+    const passwordStrengthRegexp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+    if (!this.state.password.match(passwordStrengthRegexp)) {
+      newState.formErrors.password = 'Password must contain 1 lowercase character, 1 uppercase character, 1 number and be at leaset 8 characters long';
+      stateSetFlag = true;
+    };
+
+    if (!this.state.confirmPassword && this.state.password) {
+      newState.formErrors.confirmPassword = 'Please confirm your password';
+      stateSetFlag = true;
+    }
+
+    if (this.state.confirmPassword && this.state.password && this.state.confirmPassword !== this.state.password) {
+      newState.formErrors.confirmPassword = 'Passwords do not match';
+      stateSetFlag = true;
+    }
+
     if (stateSetFlag) {
       this.setState({state: newState})
       return false;
@@ -105,4 +126,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default PasswordResetForm;
