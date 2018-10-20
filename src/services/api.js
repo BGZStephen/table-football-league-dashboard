@@ -16,6 +16,8 @@ class ApiService {
 			this.processApiCall(
 				_.assign({ method: 'post', url: '/users/authenticate' }, options),
       ),
+    passwordResetUpdate: (options = {}) =>
+      this.processApiCall(_.assign({ method: 'put', url: '/users/password-reset' }, options)),      
     passwordReset: (options = {}) =>
       this.processApiCall(_.assign({ method: 'post', url: '/users/password-reset' }, options)),    
     passwordResetToken: (options = {}) =>

@@ -13,7 +13,7 @@ class PasswordReset extends Component {
   render() {
     return (
       <div className="password-reset">
-        <PasswordResetForm onSuccess={() => this.goTo('/login')} /> 
+        <PasswordResetForm token={this.props.match.params.id} onSuccess={() => this.goTo('/login')} /> 
       </div>
     )
   }

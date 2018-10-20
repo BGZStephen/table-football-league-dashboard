@@ -12,6 +12,7 @@ class PasswordResetForm extends Component {
       email: '',
       password: '',
       confirmPassword: '',
+      token: '',
       formErrors: {
         email: null,
         password: null,
@@ -69,10 +70,11 @@ class PasswordResetForm extends Component {
       return;
     }
     
-    ApiService.users.passwordReset({
+    ApiService.users.passwordResetUpdate({
       body: {
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
+        token: this.state.token
       }
     }).then(res => {
       NotificationService.show('Password reset, please log in')
@@ -123,6 +125,10 @@ class PasswordResetForm extends Component {
     }
 
     return true;
+  }
+
+  static getDerivedStateFromProps(newProps) {
+    return newProps;
   }
 }
 

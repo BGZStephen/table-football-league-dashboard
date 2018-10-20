@@ -18,7 +18,7 @@ class App extends Component {
             )}/>
             <Route path='/login' component={Login}/>
             <Route path='/register' component={Register}/>
-            <Route path='/password-reset' component={PasswordResetRequest}/>
+            <Route exact path='/password-reset' component={PasswordResetRequest}/>
             <Route path='/password-reset/:id' component={PasswordReset}/>
             <Route path='/dashboard' component={ViewWrapper}/>
           </Switch>

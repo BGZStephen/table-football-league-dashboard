@@ -15,7 +15,9 @@ class PasswordResetRequest extends Component {
       <div className="password-reset">
       {
         this.state.submitted ? (
-          <p>Submitted</p>
+          <div className="password-reset-confirmed">
+            <p>Password reset requested, check your emails and follow the instructions.</p>
+          </div>
         ) : <PasswordResetRequestForm onSuccess={() => this.setState({submitted: true})} /> 
       }
       </div>
