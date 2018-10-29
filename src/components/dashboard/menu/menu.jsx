@@ -13,11 +13,11 @@ class Menu extends Component {
 
   render() {
     const menuItems = [
-      {id: 'home', label: 'Home', icon: 'home', link: '/home'},
-      {id: 'players', label: 'Players', icon: 'user', link: '/players'},
-      {id: 'teams', label: 'Teams', icon: 'users', link: '/teams'},
-      {id: 'fixtures', label: 'Fixtures', icon: 'gamepad', link: '/fixtures'},
-      {id: 'leagues', label: 'Leagues', icon: 'trophy', link: '/leagues'},
+      {id: 'home', label: 'Home', icon: 'home', link: '/dashboard/home'},
+      {id: 'players', label: 'Players', icon: 'user', link: '/dashboard/players'},
+      {id: 'teams', label: 'Teams', icon: 'users', link: '/dashboard/teams'},
+      {id: 'fixtures', label: 'Fixtures', icon: 'gamepad', link: '/dashboard/fixtures'},
+      {id: 'leagues', label: 'Leagues', icon: 'trophy', link: '/dashboard/leagues'},
     ]
     return (
       <div className={this.state.menuVisible ? "dashboard-menu active" : "dashboard-menu"}>

@@ -6,6 +6,7 @@ import PasswordReset from '../password-reset/password-reset'
 import PasswordResetRequest from '../password-reset/password-reset-request'
 import ViewWrapper from '../dashboard/view-wrapper/view-wrapper';
 import Notification from '../notification/notification';
+import { isAuthenticated } from '../../services/auth'
 
 class App extends Component {
   render() {
@@ -20,7 +21,7 @@ class App extends Component {
             <Route path='/register' component={Register}/>
             <Route exact path='/password-reset' component={PasswordResetRequest}/>
             <Route path='/password-reset/:id' component={PasswordReset}/>
-            <Route path='/dashboard' component={ViewWrapper}/>
+            <Route path='/dashboard' render={() => (isAuthenticated() ? <ViewWrapper></ViewWrapper> : <Redirect to="/login"/>)}/>
           </Switch>
           <Notification />
         </div>

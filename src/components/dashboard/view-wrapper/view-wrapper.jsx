@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
+import { isAuthenticated } from '../../../services/auth';
 import MobileTopNav from '../mobile-top-nav/mobile-top-nav';
 import Menu from '../menu/menu';
 import Home from '../home/home';
@@ -28,26 +29,26 @@ class ViewWrapper extends Component {
 
   render() {
     return (
-      <BrowserRouter basename="/dashboard">
+      <BrowserRouter>
         <div className="dashboard-view-wrapper">
           <MobileTopNav onMenuToggle={this.handleMenuToggle} />
           <Menu menuVisible={this.state.menuVisible} />
           <Switch>
-            <Route exact path='/home' component={Home} />
-            <Route exact path='/players' component={Players} />
-            <Route exact path='/players/add' component={PlayerAdd} />
-            <Route exact path='/players/:id' component={PlayerView} />
-            <Route exact path='/players/:id/edit' component={PlayerEdit} />
-            <Route exact path='/teams' component={Teams} />
-            <Route exact path='/teams/add' component={TeamAdd} />
-            <Route exact path='/teams/:id' component={TeamView} />
-            <Route exact path='/teams/:id/edit' component={TeamEdit} />
-            <Route exact path='/fixtures' component={Fixtures} />
-            <Route exact path='/fixtures/add' component={FixtureAdd} />
+            <Route exact path='/dashboard/home' render={() => (isAuthenticated() ? <Home /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/players' render={() => (isAuthenticated() ? <Players /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/players/add' render={() => (isAuthenticated() ? <PlayerAdd /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/players/:id' render={() => (isAuthenticated() ? <PlayerView /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/players/:id/edit' render={() => (isAuthenticated() ? <PlayerEdit /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/teams' render={() => (isAuthenticated() ? <Teams /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/teams/add' render={() => (isAuthenticated() ? <TeamAdd /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/teams/:id' render={() => (isAuthenticated() ? <TeamView /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/teams/:id/edit' render={() => (isAuthenticated() ? <TeamEdit /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/fixtures' render={() => (isAuthenticated() ? <Fixtures /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/fixtures/add' render={() => (isAuthenticated() ? <FixtureAdd /> : window.location.href='/login')}/>
             {/* <Route exact path='/fixtures/:id' component={FixtureView} /> */}
-            <Route exact path='/fixtures/:id/edit' component={FixtureEdit} />
-            <Route exact path='/leagues' component={Leagues} />
-            <Route exact path='/leagues/add' component={LeaguesAdd} />
+            <Route exact path='/dashboard/fixtures/:id/edit' render={() => (isAuthenticated() ? <FixtureEdit /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/leagues' render={() => (isAuthenticated() ? <Leagues /> : window.location.href='/login')}/>
+            <Route exact path='/dashboard/leagues/add' render={() => (isAuthenticated() ? <LeaguesAdd /> : window.location.href='/login')}/>
           </Switch>
         </div>
       </BrowserRouter>
