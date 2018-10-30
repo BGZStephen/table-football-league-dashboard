@@ -3,6 +3,7 @@ import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import ApiService from '../../../services/api';
 import NotificationService from '../../../services/notification';
 import LeaguesList from './list';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class Leagues extends Component {
   constructor({props}) {
@@ -37,6 +38,20 @@ class Leagues extends Component {
                 <div className="leagues-list-container">
                   <LeaguesList leagues={this.state.leagues} options={true} onLeagueSelect={this.goToLeague}/>
                 </div>
+                <div className="actions-container">
+                  <div className="row">
+                    <div className="col col-sm-6">
+                      <button type="button" onClick={this.onAddLeague}>
+                        <FontAwesomeIcon icon="trophy" /> Add a league
+                      </button>
+                    </div>
+                    <div className="col col-sm-6">
+                      <button type="button" onClick={this.onAddTeam}>
+                        <FontAwesomeIcon icon="users" /> Add a team
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>   
@@ -52,6 +67,14 @@ class Leagues extends Component {
       }, err => {
         NotificationService.error(err.response.data.message)
       })
+  }
+
+  onAddTeam = () => {
+    this.goTo('/teams/add');
+  }
+
+  onAddLeague = () => {
+    this.goTo('/leagues/add');
   }
 
   goToLeague = (league) => {

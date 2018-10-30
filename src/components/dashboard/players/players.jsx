@@ -3,6 +3,7 @@ import ApiService from '../../../services/api';
 import NotificationService from '../../../services/notification';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import PlayersList from './list';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class Players extends Component {
   constructor({props}) {
@@ -37,6 +38,11 @@ class Players extends Component {
                 <div className="players-list-container">
                   <PlayersList players={this.state.players} options={true} onPlayerSelect={(player) => this.goToPlayer(player)}/>
                 </div>
+                <div className="actions-container">
+                  <button type="button" onClick={this.onAddPlayer}>
+                    <FontAwesomeIcon icon="user" /> Add a player
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -56,6 +62,10 @@ class Players extends Component {
 
   goToPlayer(player) {
     this.props.history.push(`/players/${player._id}`);
+  }
+
+  onAddPlayer = () => {
+    this.goTo('/players/add');
   }
 }
 

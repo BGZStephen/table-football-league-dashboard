@@ -3,6 +3,7 @@ import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import ApiService from '../../../services/api';
 import NotificationService from '../../../services/notification';
 import FixturesList from './list';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class Fixtures extends Component {
   constructor({props}) {
@@ -37,12 +38,34 @@ class Fixtures extends Component {
                 <div className="fixtures-list-container">
                   <FixturesList fixtures={this.state.fixtures} options={true} onFixtureSelect={this.goToFixture}/>
                 </div>
+                <div className="actions-container">
+                  <div className="row">
+                    <div className="col col-sm-6">
+                      <button type="button" onClick={this.onAddFixture}>
+                        <FontAwesomeIcon icon="gamepad" /> Add a fixture
+                      </button>
+                    </div>
+                    <div className="col col-sm-6">
+                      <button type="button" onClick={this.onAddTeam}>
+                        <FontAwesomeIcon icon="users" /> Add a team
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     )
+  }
+
+  onAddFixture = () => {
+    this.goTo('/fixtures/add');
+  }
+
+  onAddTeam = () => {
+    this.goTo('/teams/add');
   }
 
   getFixtures = () => {

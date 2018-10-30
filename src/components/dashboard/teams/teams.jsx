@@ -3,6 +3,7 @@ import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import ApiService from '../../../services/api';
 import NotificationService from '../../../services/notification';
 import TeamsList from './list';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class Teams extends Component {
   constructor(props) {
@@ -37,6 +38,20 @@ class Teams extends Component {
                 <div className="teams-list-container">
                   <TeamsList teams={this.state.teams} options={true} onTeamSelect={this.goToTeam}/>
                 </div>
+                <div className="actions-container">
+                  <div className="row">
+                    <div className="col col-sm-6">
+                      <button type="button" onClick={this.onAddTeam}>
+                        <FontAwesomeIcon icon="users" /> Add a team
+                      </button>
+                    </div>
+                    <div className="col col-sm-6">
+                      <button type="button" onClick={this.onAddPlayer}>
+                        <FontAwesomeIcon icon="user" /> Add a player
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -61,6 +76,14 @@ class Teams extends Component {
   goToTeam = (team) => {
     return;
     this.props.history.push(`/teams/${team._id}`)
+  }
+
+  onAddPlayer = () => {
+    this.goTo('/players/add');
+  }
+
+  onAddTeam = () => {
+    this.goTo('/teams/add');
   }
 }
 
