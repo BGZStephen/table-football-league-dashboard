@@ -4,6 +4,7 @@ import ApiService from '../../../services/api';
 import NotificationService from '../../../services/notification';
 import FixturesList from './list';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { withRouter } from "react-router";
 
 class Fixtures extends Component {
   constructor({props}) {
@@ -85,6 +86,10 @@ class Fixtures extends Component {
     return;
     this.props.history.push(`/fixtures/${fixture._id}`)
   }
+
+  goTo = (path) => {
+    this.props.history.push(path)
+  }
 }
 
-export default Fixtures;
+export default withRouter(Fixtures);

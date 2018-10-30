@@ -4,6 +4,7 @@ import ApiService from '../../../services/api';
 import NotificationService from '../../../services/notification';
 import TeamsList from './list';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { withRouter } from "react-router";
 
 class Teams extends Component {
   constructor(props) {
@@ -85,6 +86,10 @@ class Teams extends Component {
   onAddTeam = () => {
     this.goTo('/teams/add');
   }
+
+  goTo = (path) => {
+    this.props.history.push(path)
+  }
 }
 
-export default Teams;
+export default withRouter(Teams);

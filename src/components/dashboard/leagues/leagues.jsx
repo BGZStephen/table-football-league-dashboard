@@ -4,6 +4,7 @@ import ApiService from '../../../services/api';
 import NotificationService from '../../../services/notification';
 import LeaguesList from './list';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { withRouter } from "react-router";
 
 class Leagues extends Component {
   constructor({props}) {
@@ -81,6 +82,10 @@ class Leagues extends Component {
     return;
     this.props.history.push(`/leagues/${league._id}`)
   }
+
+  goTo = (path) => {
+    this.props.history.push(path)
+  }
 }
 
-export default Leagues;
+export default withRouter(Leagues);

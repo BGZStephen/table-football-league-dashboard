@@ -3,9 +3,10 @@ import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import QuickActionsWidget from '../widget/quick-actions';
 import UpcomingFixturesWidget from '../widget/upcoming-fixtures';
 import TopTeamsWidget from '../widget/top-teams';
+import { withRouter } from "react-router";
 
 class Home extends Component {
-  constructor({props}) {
+  constructor(props) {
     super(props)
   }
 
@@ -64,6 +65,10 @@ class Home extends Component {
   goTo = (path) => {
     this.props.history.push(path)
   }
+
+  static getDerivedStateFromProps(newProps) {
+    return newProps;
+  }
 }
 
-export default Home;
+export default withRouter(Home);

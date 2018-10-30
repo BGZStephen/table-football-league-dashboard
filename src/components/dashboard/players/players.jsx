@@ -4,6 +4,7 @@ import NotificationService from '../../../services/notification';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import PlayersList from './list';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { withRouter } from "react-router";
 
 class Players extends Component {
   constructor({props}) {
@@ -67,6 +68,10 @@ class Players extends Component {
   onAddPlayer = () => {
     this.goTo('/players/add');
   }
+
+  goTo = (path) => {
+    this.props.history.push(path)
+  }
 }
 
-export default Players;
+export default withRouter(Players);
