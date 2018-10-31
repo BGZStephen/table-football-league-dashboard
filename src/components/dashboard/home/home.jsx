@@ -3,7 +3,7 @@ import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import QuickActionsWidget from '../widget/quick-actions';
 import UpcomingFixturesWidget from '../widget/upcoming-fixtures';
 import TopTeamsWidget from '../widget/top-teams';
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 
 class Home extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class Home extends Component {
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
           <div className="row">
-            <div className="col col-xl-3">
+            <div className="col col-xl-4">
               <QuickActionsWidget
                 onAddLeague={this.onAddLeague}
                 onAddPlayer={this.onAddPlayer}
@@ -35,10 +35,10 @@ class Home extends Component {
               />
             </div>
             <div className="col col-xl-4">
-              <TopTeamsWidget/>
+              <TopTeamsWidget />
             </div>
-            <div className="col col-xl-3">
-              <UpcomingFixturesWidget/>
+            <div className="col col-xl-4">
+              <UpcomingFixturesWidget />
             </div>
           </div>
         </div>
