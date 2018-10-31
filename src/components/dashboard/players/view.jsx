@@ -4,6 +4,7 @@ import ApiService from '../../../services/api';
 import NotificationService from '../../../services/notification';
 import PlayerSummaryWidget from '../widget/player-summary';
 import UpcomingFixturesWidget from '../widget/upcoming-fixtures';
+import {withRouter} from "react-router";
 
 class PlayerView extends Component {
   constructor(props) {
@@ -60,12 +61,12 @@ class PlayerView extends Component {
         id,
       }
     })
-    .then(res => {
-      this.setState({player: res.data})
-    }, err => {
-      NotificationService.error(err.response.data.message)
-    })
+      .then(res => {
+        this.setState({player: res.data})
+      }, err => {
+        NotificationService.error(err.response.data.message)
+      })
   }
 }
 
-export default PlayerView;
+export default withRouter(PlayerView);

@@ -5,6 +5,7 @@ import NotificationService from '../../../services/notification';
 import FormError from '../../form/form-error';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import TeamsSelectModal from '../modals/teams-select-modal';
+import {withRouter} from "react-router";
 
 class LeaguesAdd extends Component {
   constructor({props}) {
@@ -39,10 +40,10 @@ class LeaguesAdd extends Component {
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
           <TeamsSelectModal
-            preSelectedTeams={this.state.teams} 
-            visible={this.state.teamsSelectModalVisible} 
-            onTeamsSelect={this.setTeams} 
-            onClose = {this.onTeamsSelectModalClose}
+            preSelectedTeams={this.state.teams}
+            visible={this.state.teamsSelectModalVisible}
+            onTeamsSelect={this.setTeams}
+            onClose={this.onTeamsSelectModalClose}
           />
           <div className="row">
             <div className="col col-sm-3">
@@ -100,7 +101,7 @@ class LeaguesAdd extends Component {
                         </div>
                       ))}
                     </div>
-                  ): null}
+                  ) : null}
                   <div className="teams teams-add" onClick={this.showTeamsSelectModal}>
                     <p>Select teams</p>
                     <FontAwesomeIcon icon="plus" />
@@ -207,4 +208,4 @@ class LeaguesAdd extends Component {
   }
 }
 
-export default LeaguesAdd;
+export default withRouter(LeaguesAdd);

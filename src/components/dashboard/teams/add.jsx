@@ -5,6 +5,7 @@ import NotificationService from '../../../services/notification';
 import FormError from '../../form/form-error';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import PlayerSelectModal from '../modals/player-select-modal'
+import {withRouter} from "react-router";
 
 class TeamAdd extends Component {
   constructor(props) {
@@ -37,10 +38,10 @@ class TeamAdd extends Component {
       <div className="teams-add full-width-container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
-          <PlayerSelectModal 
-            visible={this.state.playerSelectModalVisible} 
-            onPlayerSelect={this.setPlayer} 
-            onClose = {this.onPlayerSelectModalClose}
+          <PlayerSelectModal
+            visible={this.state.playerSelectModalVisible}
+            onPlayerSelect={this.setPlayer}
+            onClose={this.onPlayerSelectModalClose}
           />
           <div className="row">
             <div className="col col-sm-3">
@@ -68,12 +69,12 @@ class TeamAdd extends Component {
                               </div>
                               <p>{this.state.players[0].name}</p>
                               <div className="positions-container">
-                                {this.state.players[0].position.striker ? 
+                                {this.state.players[0].position.striker ?
                                   <div className="position striker">
                                     <FontAwesomeIcon icon="crosshairs" />
                                   </div> : null
                                 }
-                                {this.state.players[0].position.defender ? 
+                                {this.state.players[0].position.defender ?
                                   <div className="position defender">
                                     <FontAwesomeIcon icon="shield-alt" />
                                   </div> : null
@@ -81,10 +82,10 @@ class TeamAdd extends Component {
                               </div>
                             </div>
                           )
-                          : <div className="player player-add" onClick={this.showPlayerSelectModal}>
-                            <p>Add a player</p>
-                            <FontAwesomeIcon icon="plus" />
-                          </div>
+                            : <div className="player player-add" onClick={this.showPlayerSelectModal}>
+                              <p>Add a player</p>
+                              <FontAwesomeIcon icon="plus" />
+                            </div>
                         }
                       </div>
                       <div className="col col-md-6">
@@ -97,12 +98,12 @@ class TeamAdd extends Component {
                               </div>
                               <p>{this.state.players[1].name}</p>
                               <div className="positions-container">
-                                {this.state.players[1].position.striker ? 
+                                {this.state.players[1].position.striker ?
                                   <div className="position striker">
                                     <FontAwesomeIcon icon="crosshairs" />
                                   </div> : null
                                 }
-                                {this.state.players[1].position.defender ? 
+                                {this.state.players[1].position.defender ?
                                   <div className="position defender">
                                     <FontAwesomeIcon icon="shield-alt" />
                                   </div> : null
@@ -110,10 +111,10 @@ class TeamAdd extends Component {
                               </div>
                             </div>
                           )
-                          : <div className="player player-add" onClick={this.showPlayerSelectModal}>
-                            <p>Add a player</p>
-                            <FontAwesomeIcon icon="plus" />
-                          </div>
+                            : <div className="player player-add" onClick={this.showPlayerSelectModal}>
+                              <p>Add a player</p>
+                              <FontAwesomeIcon icon="plus" />
+                            </div>
                         }
                       </div>
                     </div>
@@ -216,7 +217,7 @@ class TeamAdd extends Component {
 
     for (const currentPlayer of currentPlayers) {
       if (currentPlayer._id === player._id) {
-        NotificationService.error('Teams cannot have the same player twice')        
+        NotificationService.error('Teams cannot have the same player twice')
         return;
       }
     }
@@ -245,4 +246,4 @@ class TeamAdd extends Component {
   }
 }
 
-export default TeamAdd;
+export default withRouter(TeamAdd);

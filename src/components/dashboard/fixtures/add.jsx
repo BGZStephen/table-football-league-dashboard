@@ -5,6 +5,7 @@ import NotificationService from '../../../services/notification';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import FormError from '../../form/form-error';
 import TeamSelectModal from '../modals/team-select-modal'
+import {withRouter} from "react-router";
 
 class FixtureAdd extends Component {
   constructor(props) {
@@ -37,10 +38,10 @@ class FixtureAdd extends Component {
       <div className="fixtures-add full-width-container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="content-container container-grey">
-          <TeamSelectModal 
-            visible={this.state.teamSelectModalVisible} 
-            onTeamSelect={this.setTeam} 
-            onClose = {this.onTeamSelectModalClose}
+          <TeamSelectModal
+            visible={this.state.teamSelectModalVisible}
+            onTeamSelect={this.setTeam}
+            onClose={this.onTeamSelectModalClose}
           />
           <div className="row">
             <div className="col col-lg-4">
@@ -79,10 +80,10 @@ class FixtureAdd extends Component {
                               </div>
                             </div>
                           )
-                          : <div className="team team-add" onClick={this.showTeamSelectModal}>
-                            <p>Add a team</p>
-                            <FontAwesomeIcon icon="plus" />
-                          </div>
+                            : <div className="team team-add" onClick={this.showTeamSelectModal}>
+                              <p>Add a team</p>
+                              <FontAwesomeIcon icon="plus" />
+                            </div>
                         }
                       </div>
                       <div className="col col-xl-2 vs-container">
@@ -109,10 +110,10 @@ class FixtureAdd extends Component {
                               </div>
                             </div>
                           )
-                          : <div className="team team-add" onClick={this.showTeamSelectModal}>
-                            <p>Add a team</p>
-                            <FontAwesomeIcon icon="plus" />
-                          </div>
+                            : <div className="team team-add" onClick={this.showTeamSelectModal}>
+                              <p>Add a team</p>
+                              <FontAwesomeIcon icon="plus" />
+                            </div>
                         }
                       </div>
                     </div>
@@ -205,7 +206,7 @@ class FixtureAdd extends Component {
           if (teamOnePlayer._id === teamTwoPlayer._id) {
             return NotificationService.error('Fixtures must contain 4 unique players');
           }
-        }  
+        }
       }
     }
 
@@ -233,4 +234,4 @@ class FixtureAdd extends Component {
   }
 }
 
-export default FixtureAdd;
+export default withRouter(FixtureAdd);

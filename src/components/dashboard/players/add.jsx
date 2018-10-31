@@ -4,6 +4,7 @@ import NotificationService from '../../../services/notification';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs'
 import FormError from '../../form/form-error';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {withRouter} from "react-router";
 
 class PlayerAdd extends Component {
   constructor({props}) {
@@ -142,4 +143,4 @@ class PlayerAdd extends Component {
   }
 }
 
-export default PlayerAdd;
+export default withRouter(PlayerAdd);

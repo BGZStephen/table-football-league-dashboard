@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class PlayerSummaryWidget extends Component {
   constructor(props) {
@@ -29,19 +29,19 @@ class PlayerSummaryWidget extends Component {
             <p className="group-label">Positions</p>
             <div className="positions-container">
               {
-                this.state.player.position.defender ? (
-                <div className="position defender">
-                  <FontAwesomeIcon icon="shield-alt" />
-                  <p>Defender</p>
-                </div>
-              ): null}
-              {
                 this.state.player.position.striker ? (
-                <div className="position striker">
-                  <FontAwesomeIcon icon="crosshairs" />
-                  <p>Striker</p>
-                </div>
-              ): null}
+                  <div className="position striker">
+                    <FontAwesomeIcon icon="crosshairs" />
+                    <p>Striker</p>
+                  </div>
+                ) : null}
+              {
+                this.state.player.position.defender ? (
+                  <div className="position defender">
+                    <FontAwesomeIcon icon="shield-alt" />
+                    <p>Defender</p>
+                  </div>
+                ) : null}
             </div>
           </div>
         </div>
