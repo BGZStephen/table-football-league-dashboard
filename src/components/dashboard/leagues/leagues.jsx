@@ -66,7 +66,7 @@ class Leagues extends Component {
       .then(res => {
         this.setState({leagues: res.data})
       }, err => {
-        NotificationService.error(err.response.data.message)
+        NotificationService.error(err)
       })
   }
 

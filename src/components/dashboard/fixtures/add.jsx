@@ -154,7 +154,7 @@ class FixtureAdd extends Component {
       NotificationService.show('Fixture created successfully');
       this.props.history.push('/fixtures')
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 

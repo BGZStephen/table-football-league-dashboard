@@ -69,12 +69,11 @@ class Login extends Component {
         password: this.state.password
       }
     }).then(res => {
-      console.log(res)
       localStorage.setItem('token', res.data.token)
       NotificationService.show('Login successful')
       this.props.onSuccess();
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 

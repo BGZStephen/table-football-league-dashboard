@@ -80,7 +80,7 @@ class PasswordResetForm extends Component {
       NotificationService.show('Password reset, please log in')
       this.props.onSuccess();
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 

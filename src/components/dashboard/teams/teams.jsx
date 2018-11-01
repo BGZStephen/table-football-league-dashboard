@@ -70,7 +70,7 @@ class Teams extends Component {
       .then(res => {
         this.setState({teams: res.data})
       }, err => {
-        NotificationService.error(err.response.data.message)
+        NotificationService.error(err)
       })
   }
 

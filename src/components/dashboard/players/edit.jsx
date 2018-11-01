@@ -120,7 +120,7 @@ class PlayerEdit extends Component {
       NotificationService.show('Player updated successfully');
       this.props.history.push('/players')
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 
@@ -161,7 +161,7 @@ class PlayerEdit extends Component {
     .then(res => {
       this.setState({player: res.data})
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 }

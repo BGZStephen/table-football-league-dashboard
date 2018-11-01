@@ -59,7 +59,7 @@ class PasswordResetRequestForm extends Component {
       NotificationService.show('Password reset email sent!')
       this.props.onSuccess();
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 

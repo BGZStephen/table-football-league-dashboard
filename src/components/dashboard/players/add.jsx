@@ -112,7 +112,7 @@ class PlayerAdd extends Component {
       NotificationService.show('Player created successfully');
       this.props.history.push('/players')
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 

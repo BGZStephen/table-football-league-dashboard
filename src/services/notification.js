@@ -13,8 +13,18 @@ class NotificationService {
     this.eventEmitter.emit('show', message)
   }
 
-  error = (message, delay = 3000) => {
-    this.eventEmitter.emit('error', message)
+  error = (err) => {
+    if (typeof err === 'string') {
+      this.eventEmitter.emit('error', err)
+      return;
+    }
+
+    if (err && err.response && err.response.data && err.response.data.message) {
+      this.eventEmitter.emit('error', err.response.data.message)
+      return;
+    }
+
+    this.eventEmitter.emit('error', 'Something went wrong, please try again')
   }
 }
 

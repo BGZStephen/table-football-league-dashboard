@@ -65,7 +65,7 @@ class TeamsSelectModal extends Component {
       .then(res => {
         this.setState({availableTeams: res.data})
       }, err => {
-        NotificationService.error(err.response.data.message)
+        NotificationService.error(err)
       })
   }
 

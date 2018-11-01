@@ -158,7 +158,7 @@ class TeamEdit extends Component {
       NotificationService.show('Team updated successfully');
       this.props.history.push('/teams')
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 
@@ -248,7 +248,7 @@ class TeamEdit extends Component {
     .then(res => {
       this.setState({team: res.data})
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 }

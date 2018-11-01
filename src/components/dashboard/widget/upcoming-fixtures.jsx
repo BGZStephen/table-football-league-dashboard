@@ -51,7 +51,7 @@ class UpcomingFixturesWidget extends Component {
       .then(res => {
         this.setState({fixtures: res.data})
       }, err => {
-        NotificationService.error(err.response.data.message)
+        NotificationService.error(err)
       })
   }
 

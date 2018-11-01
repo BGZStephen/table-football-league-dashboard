@@ -153,7 +153,7 @@ class LeaguesAdd extends Component {
       NotificationService.show('League created successfully');
       this.props.history.push('/leagues')
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 

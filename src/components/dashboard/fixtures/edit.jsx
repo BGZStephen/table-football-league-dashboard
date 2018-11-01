@@ -162,7 +162,7 @@ class FixtureEdit extends Component {
       NotificationService.show('Fixture updated successfully');
       this.props.history.push('/fixtures')
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 
@@ -256,7 +256,7 @@ class FixtureEdit extends Component {
     .then(res => {
       this.setState({fixture: res.data})
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 }

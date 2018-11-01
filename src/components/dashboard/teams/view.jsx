@@ -53,7 +53,7 @@ class TeamView extends Component {
     .then(res => {
       this.setState({team: res.data})
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 }

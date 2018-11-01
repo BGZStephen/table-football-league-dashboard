@@ -169,7 +169,7 @@ class TeamAdd extends Component {
       NotificationService.show('Team created successfully');
       this.props.history.push('/teams')
     }, err => {
-      NotificationService.error(err.response.data.message)
+      NotificationService.error(err)
     })
   }
 
